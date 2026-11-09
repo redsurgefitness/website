@@ -1,149 +1,308 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const site = Astro.site ?? new URL("https://redsurgefitness.com");
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
 
 const [featured, ...rest] = posts;
 
 const formatDate = (date: Date) =>
-  date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+
+const readingTime = (body?: string) => {
+  const words = body?.trim().split(/\s+/).length ?? 0;
+  return Math.max(1, Math.ceil(words / 200));
+};
+
+const averageReadTime =
+  posts.length > 0
+    ? Math.round(
+        posts.reduce((sum, p) => sum + readingTime(p.body), 0) / posts.length,
+      )
+    : 0;
 
 const title = "Jump Rope Training Blog";
 const description =
   "Technique breakdowns, conditioning workouts, and programming guides for jump rope athletes. Learn double-unders, build endurance, and train smarter with Red Surge Fitness.";
+
+const canonicalURL = new URL(Astro.url.pathname, site);
+
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": `${canonicalURL.href}#collection`,
+  name: title,
+  description,
+  url: canonicalURL.href,
+  isPartOf: { "@id": `${site.origin}/#organization` },
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: posts.length,
+    itemListElement: posts.map((post, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: new URL(`/blog/${post.id}/`, site).href,
+      name: post.data.title,
+    })),
+  },
+};
+
+const breadcrumbs = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: site.origin },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Blog",
+      item: canonicalURL.href,
+    },
+  ],
+};
 ---
 
 <BaseLayout title={title} description={description}>
-  <!-- Page header -->
-  <section class="relative py-20 md:py-28 overflow-hidden" aria-labelledby="blog-heading">
+  <script type="application/ld+json" set:html={JSON.stringify(collectionSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbs)} />
+
+  <!-- Breadcrumb -->
+  <nav aria-label="Breadcrumb" class="mb-8">
+    <ol class="flex items-center gap-2 text-sm text-gray-400">
+      <li><a href="/" class="hover:text-red-400 transition">Home</a></li>
+      <li aria-hidden="true" class="text-gray-600">/</li>
+      <li class="text-gray-300" aria-current="page">Blog</li>
+    </ol>
+  </nav>
+
+  <!-- Hero -->
+  <section
+    class="relative py-10 md:py-14 overflow-hidden"
+    aria-labelledby="blog-heading"
+  >
     <div
       class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_rgba(220,38,38,0.12),transparent_60%)]"
-      aria-hidden="true"
-    ></div>
-    <p class="text-xs uppercase tracking-[0.4em] text-red-500 mb-6 font-semibold">
+      aria-hidden="true">
+    </div>
+
+    <p
+      class="text-xs uppercase tracking-[0.4em] text-red-500 mb-6 font-semibold"
+    >
       The Red Surge Blog
     </p>
     <h1
       id="blog-heading"
-      class="text-5xl md:text-7xl font-black tracking-tighter mb-6 leading-[0.95]"
+      class="text-5xl md:text-7xl font-black tracking-tighter mb-6 leading-[0.95] uppercase"
     >
-      TRAINING<br />
-      <span class="text-red-500">INSIGHTS.</span>
+      Training<br />
+      <span class="text-red-500">Insights.</span>
     </h1>
-    <p class="text-gray-400 text-lg md:text-xl max-w-2xl leading-relaxed">
+    <p class="text-gray-400 text-lg md:text-xl max-w-2xl leading-relaxed mb-8">
       Technique breakdowns, conditioning workouts, and programming guides for
       athletes who take their jump rope training seriously.
     </p>
+
+    {
+      posts.length > 0 && (
+        <p class="text-xs uppercase tracking-[0.25em] text-gray-500 font-semibold">
+          {posts.length} {posts.length === 1 ? "article" : "articles"}
+          <span aria-hidden="true" class="mx-3 text-gray-700">
+            ·
+          </span>
+          {averageReadTime} min average read
+        </p>
+      )
+    }
   </section>
 
-  {posts.length === 0 ? (
-    <section class="py-20 border-t border-gray-800">
-      <p class="text-gray-400 text-center">No posts published yet. Check back soon.</p>
-    </section>
-  ) : (
-    <>
-      <!-- Featured post -->
-      {featured && (
-        <section class="pb-12 border-t border-gray-800 pt-16" aria-labelledby="featured-heading">
-          <p class="text-xs uppercase tracking-[0.3em] text-red-500 mb-6 font-semibold">
-            Latest
-          </p>
-          <a
-            href={`/blog/${featured.id}/`}
-            class="group block bg-gradient-to-br from-gray-900 to-gray-950 p-10 md:p-14 rounded-2xl border border-gray-800 hover:border-gray-700 transition"
+  {
+    posts.length === 0 ? (
+      <section class="py-20 border-t border-gray-800">
+        <p class="text-gray-400 text-center">
+          No posts published yet. Check back soon.
+        </p>
+      </section>
+    ) : (
+      <>
+        <!-- Featured post -->
+        {featured && (
+          <section
+            class="pt-16 pb-12 border-t border-gray-800"
+            aria-labelledby="featured-heading"
           >
-            <div class="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-5">
-              <time datetime={featured.data.pubDate.toISOString()}>
-                {formatDate(featured.data.pubDate)}
-              </time>
-              {featured.data.tags.length > 0 && (
-                <>
-                  <span aria-hidden="true">·</span>
-                  <span class="text-red-400 font-semibold uppercase tracking-widest">
-                    {featured.data.tags[0]}
-                  </span>
-                </>
-              )}
-            </div>
-            <h2
-              id="featured-heading"
-              class="text-3xl md:text-5xl font-bold tracking-tight mb-5 group-hover:text-red-400 transition leading-tight"
+            <p class="text-xs uppercase tracking-[0.3em] text-red-500 mb-6 font-semibold">
+              Latest
+            </p>
+            <a
+              href={`/blog/${featured.id}/`}
+              class="group block bg-gradient-to-br from-gray-900 to-gray-950 rounded-2xl border border-gray-800 hover:border-gray-700 transition overflow-hidden"
             >
-              {featured.data.title}
-            </h2>
-            <p class="text-gray-400 text-lg leading-relaxed max-w-3xl mb-8">
-              {featured.data.description}
-            </p>
-            <span class="inline-flex items-center gap-2 text-red-400 font-semibold">
-              Read the article <span aria-hidden="true" class="transition group-hover:translate-x-1">→</span>
-            </span>
-          </a>
-        </section>
-      )}
-
-      <!-- Post grid -->
-      {rest.length > 0 && (
-        <section class="py-16 border-t border-gray-800" aria-labelledby="all-posts-heading">
-          <div class="flex items-end justify-between mb-10">
-            <div>
-              <p class="text-xs uppercase tracking-[0.3em] text-red-500 mb-3 font-semibold">
-                Archive
-              </p>
-              <h2 id="all-posts-heading" class="text-3xl md:text-4xl font-bold tracking-tight">
-                All articles
-              </h2>
-            </div>
-            <p class="hidden md:block text-sm text-gray-500">
-              {posts.length} {posts.length === 1 ? 'article' : 'articles'}
-            </p>
-          </div>
-
-          <div class="grid md:grid-cols-2 gap-4">
-            {rest.map((post) => (
-              <a
-                href={`/blog/${post.id}/`}
-                class="group bg-gray-900 p-8 rounded-2xl border border-gray-800 hover:border-gray-700 transition flex flex-col"
-              >
-                <div class="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-4">
-                  <time datetime={post.data.pubDate.toISOString()}>
-                    {formatDate(post.data.pubDate)}
-                  </time>
-                  {post.data.tags.length > 0 && (
-                    <>
-                      <span aria-hidden="true">·</span>
-                      <span class="text-red-400 font-semibold uppercase tracking-widest">
-                        {post.data.tags[0]}
-                      </span>
-                    </>
-                  )}
+              <div class="grid lg:grid-cols-2 gap-0">
+                <div class="relative aspect-[16/10] lg:aspect-auto overflow-hidden bg-gray-950">
+                  <img
+                    src={featured.data.heroImage}
+                    alt={featured.data.heroImageAlt}
+                    width="1200"
+                    height="750"
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
+                    class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"
+                    aria-hidden="true">
+                  </div>
                 </div>
-                <h3 class="text-2xl font-bold mb-3 group-hover:text-red-400 transition leading-snug">
-                  {post.data.title}
-                </h3>
-                <p class="text-gray-400 text-sm leading-relaxed flex-1">
-                  {post.data.description}
+                <div class="p-8 md:p-12 flex flex-col justify-center">
+                  <div class="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-5">
+                    <time datetime={featured.data.pubDate.toISOString()}>
+                      {formatDate(featured.data.pubDate)}
+                    </time>
+                    {featured.data.tags.length > 0 && (
+                      <>
+                        <span aria-hidden="true">·</span>
+                        <span class="text-red-400 font-semibold uppercase tracking-widest">
+                          {featured.data.tags[0]}
+                        </span>
+                      </>
+                    )}
+                    <span aria-hidden="true">·</span>
+                    <span>{readingTime(featured.body)} min read</span>
+                  </div>
+                  <h2
+                    id="featured-heading"
+                    class="text-3xl md:text-4xl font-bold tracking-tight mb-5 group-hover:text-red-400 transition leading-tight"
+                  >
+                    {featured.data.title}
+                  </h2>
+                  <p class="text-gray-400 text-base md:text-lg leading-relaxed mb-8">
+                    {featured.data.description}
+                  </p>
+                  <span class="inline-flex items-center gap-2 text-red-400 font-semibold text-sm">
+                    Read the article
+                    <span
+                      aria-hidden="true"
+                      class="transition group-hover:translate-x-1"
+                    >
+                      →
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </a>
+          </section>
+        )}
+
+        <!-- Post grid -->
+        {rest.length > 0 && (
+          <section
+            class="py-16 border-t border-gray-800"
+            aria-labelledby="all-posts-heading"
+          >
+            <div class="flex items-end justify-between mb-10">
+              <div>
+                <p class="text-xs uppercase tracking-[0.3em] text-red-500 mb-3 font-semibold">
+                  Archive
                 </p>
-                <span class="mt-6 inline-flex items-center gap-2 text-red-400 font-semibold text-sm">
-                  Read more <span aria-hidden="true" class="transition group-hover:translate-x-1">→</span>
-                </span>
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
-    </>
-  )}
+                <h2
+                  id="all-posts-heading"
+                  class="text-3xl md:text-4xl font-bold tracking-tight"
+                >
+                  All articles
+                </h2>
+              </div>
+              <p class="hidden md:block text-sm text-gray-500">
+                {rest.length}{" "}
+                {rest.length === 1 ? "more article" : "more articles"}
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              {rest.map((post) => (
+                <a
+                  href={`/blog/${post.id}/`}
+                  class="group bg-gray-900 rounded-2xl border border-gray-800 hover:border-gray-700 transition overflow-hidden flex flex-col"
+                >
+                  <div class="relative aspect-video overflow-hidden bg-gray-950">
+                    <img
+                      src={post.data.heroImage}
+                      alt={post.data.heroImageAlt}
+                      width="800"
+                      height="450"
+                      loading="lazy"
+                      decoding="async"
+                      class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                    />
+                    <div
+                      class="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent"
+                      aria-hidden="true">
+                    </div>
+                  </div>
+
+                  <div class="p-8 flex flex-col flex-1">
+                    <div class="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-4">
+                      <time datetime={post.data.pubDate.toISOString()}>
+                        {formatDate(post.data.pubDate)}
+                      </time>
+                      {post.data.tags.length > 0 && (
+                        <>
+                          <span aria-hidden="true">·</span>
+                          <span class="text-red-400 font-semibold uppercase tracking-widest">
+                            {post.data.tags[0]}
+                          </span>
+                        </>
+                      )}
+                      <span aria-hidden="true">·</span>
+                      <span>{readingTime(post.body)} min</span>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 group-hover:text-red-400 transition leading-snug">
+                      {post.data.title}
+                    </h3>
+                    <p class="text-gray-400 text-sm leading-relaxed flex-1">
+                      {post.data.description}
+                    </p>
+                    <span class="mt-6 inline-flex items-center gap-2 text-red-400 font-semibold text-sm">
+                      Read more
+                      <span
+                        aria-hidden="true"
+                        class="transition group-hover:translate-x-1"
+                      >
+                        →
+                      </span>
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
+      </>
+    )
+  }
 
   <!-- Final CTA -->
-  <section class="py-24 mt-20 border-t border-gray-800 text-center relative overflow-hidden" aria-labelledby="cta-heading">
+  <section
+    class="py-24 mt-20 border-t border-gray-800 text-center relative overflow-hidden"
+    aria-labelledby="cta-heading"
+  >
     <div
       class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(220,38,38,0.15),transparent_60%)]"
-      aria-hidden="true"
-    ></div>
-    <h2 id="cta-heading" class="text-4xl md:text-5xl font-black tracking-tighter mb-6">
-      READY TO <span class="text-red-500">TRAIN</span>?
+      aria-hidden="true">
+    </div>
+    <h2
+      id="cta-heading"
+      class="text-4xl md:text-5xl font-black tracking-tighter mb-6 uppercase"
+    >
+      Ready to <span class="text-red-500">train</span>?
     </h2>
     <p class="text-gray-400 text-lg max-w-xl mx-auto mb-10">
       Pick up a speed or weighted rope and start applying what you've read.
