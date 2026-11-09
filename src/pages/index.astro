@@ -1,11 +1,370 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const homepageTitle = "Speed & Weighted Jump Ropes | Red Surge Fitness";
+const homepageDescription =
+  "Shop premium speed and weighted jump ropes from Red Surge Fitness. Expert training guides, double-under technique, and conditioning workouts for athletes.";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout title={homepageTitle} description={homepageDescription}>
+  <!-- Hero -->
+  <section
+    class="relative text-center py-28 md:py-40 overflow-hidden"
+    aria-labelledby="hero-heading"
+  >
+    <div
+      class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(220,38,38,0.18),transparent_65%)]"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-red-500/40 to-transparent"
+      aria-hidden="true"
+    >
+    </div>
+
+    <p
+      class="text-xs uppercase tracking-[0.4em] text-red-500 mb-6 font-semibold"
+    >
+      Jump Rope Training & Gear
+    </p>
+    <h1
+      id="hero-heading"
+      class="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9]"
+    >
+      TRAIN SMARTER.<br />
+      <span class="text-red-500">JUMP HIGHER.</span>
+    </h1>
+    <p
+      class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed"
+    >
+      Premium speed and weighted jump ropes plus training insights for athletes
+      who want to move faster and condition harder. Built for double-unders,
+      endurance, and everything in between.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href="/shop"
+        class="bg-red-600 hover:bg-red-500 px-10 py-4 rounded-lg font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400"
+      >
+        Shop Jump Ropes
+      </a>
+      <a
+        href="/blog"
+        class="border border-gray-700 hover:border-gray-500 px-10 py-4 rounded-lg font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400"
+      >
+        Read the Blog
+      </a>
+    </div>
+
+    <!-- Trust strip -->
+    <div
+      class="mt-20 flex flex-wrap justify-center gap-x-12 gap-y-4 text-sm text-gray-500"
+    >
+      <span>Free shipping over $50</span>
+      <span aria-hidden="true" class="text-gray-700">·</span>
+      <span>30-day returns</span>
+      <span aria-hidden="true" class="text-gray-700">·</span>
+      <span>Trusted by 10,000+ athletes</span>
+    </div>
+  </section>
+
+  <!-- Why Red Surge -->
+  <section class="py-20 border-t border-gray-800" aria-labelledby="why-heading">
+    <div class="max-w-3xl mb-14">
+      <p
+        class="text-xs uppercase tracking-[0.3em] text-red-500 mb-3 font-semibold"
+      >
+        Why Red Surge
+      </p>
+      <h2
+        id="why-heading"
+        class="text-4xl md:text-5xl font-bold tracking-tight mb-4"
+      >
+        Everything an athlete needs, nothing they don't
+      </h2>
+      <p class="text-gray-400 text-lg">
+        Gear that performs, guides that teach, and a training philosophy built
+        on progression — not gimmicks.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <article
+        class="bg-gray-900 p-8 rounded-2xl border border-gray-800 hover:border-gray-700 transition"
+      >
+        <h3 class="text-xl font-bold mb-3">Competition-grade bearings</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Every speed rope uses sealed bearings for frictionless rotation —
+          essential for fast double-unders and unbroken sets.
+        </p>
+      </article>
+      <article
+        class="bg-gray-900 p-8 rounded-2xl border border-gray-800 hover:border-gray-700 transition"
+      >
+        <h3 class="text-xl font-bold mb-3">Progressive loading</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Weighted ropes from 4oz to 2lb let you build shoulder endurance
+          incrementally without changing your technique.
+        </p>
+      </article>
+      <article
+        class="bg-gray-900 p-8 rounded-2xl border border-gray-800 hover:border-gray-700 transition"
+      >
+        <h3 class="text-xl font-bold mb-3">Training-first guides</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Every product ships with access to programming guides written by
+          coaches, not marketers.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Bento product grid -->
+  <section
+    class="py-20 border-t border-gray-800"
+    aria-labelledby="categories-heading"
+  >
+    <div class="flex items-end justify-between mb-10">
+      <div>
+        <p
+          class="text-xs uppercase tracking-[0.3em] text-red-500 mb-3 font-semibold"
+        >
+          Shop
+        </p>
+        <h2
+          id="categories-heading"
+          class="text-4xl md:text-5xl font-bold tracking-tight"
+        >
+          Find your rope
+        </h2>
+      </div>
+      <a
+        href="/shop"
+        class="hidden md:inline-flex items-center gap-2 text-red-400 hover:text-red-300 font-semibold transition"
+      >
+        View all <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <article
+        class="md:col-span-2 md:row-span-2 bg-gradient-to-br from-gray-900 to-gray-950 p-10 rounded-2xl border border-gray-800 flex flex-col justify-between min-h-[340px]"
+      >
+        <div>
+          <p
+            class="text-xs uppercase tracking-widest text-red-500 mb-3 font-semibold"
+          >
+            Best Seller
+          </p>
+          <h3 class="text-4xl font-bold mb-4">Speed Ropes</h3>
+          <p class="text-gray-400 max-w-md leading-relaxed">
+            Competition-grade bearings and lightweight cables built for
+            double-unders and max-velocity training. The rope that gets out of
+            your way.
+          </p>
+        </div>
+        <a
+          href="/shop"
+          class="mt-8 inline-flex items-center gap-2 text-red-400 hover:text-red-300 font-semibold transition"
+        >
+          Explore speed ropes <span aria-hidden="true">→</span>
+        </a>
+      </article>
+
+      <article
+        class="bg-gray-900 p-8 rounded-2xl border border-gray-800 hover:border-gray-700 transition"
+      >
+        <h3 class="text-2xl font-bold mb-3 text-red-400">Weighted Ropes</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Build shoulder endurance and explosive power with progressive weighted
+          cables from 4oz to 2lb.
+        </p>
+      </article>
+
+      <article
+        class="bg-gray-900 p-8 rounded-2xl border border-gray-800 hover:border-gray-700 transition"
+      >
+        <h3 class="text-2xl font-bold mb-3 text-red-400">Accessories</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Replacement cables, carry cases, and grip tape — everything to keep
+          your rope in rotation.
+        </p>
+      </article>
+
+      <article
+        class="md:col-span-3 bg-gray-900 p-10 rounded-2xl border border-gray-800 flex flex-col md:flex-row md:items-center md:justify-between gap-6"
+      >
+        <div>
+          <h3 class="text-3xl font-bold mb-2">New to jump rope?</h3>
+          <p class="text-gray-400">
+            Start with our beginner's guide to sizing, technique, and your first
+            four-week plan.
+          </p>
+        </div>
+        <a
+          href="/blog"
+          class="inline-block bg-red-600 hover:bg-red-500 px-8 py-4 rounded-lg font-semibold transition whitespace-nowrap"
+        >
+          Read the guide
+        </a>
+      </article>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="py-20 border-t border-gray-800" aria-labelledby="how-heading">
+    <div class="max-w-3xl mb-14">
+      <p
+        class="text-xs uppercase tracking-[0.3em] text-red-500 mb-3 font-semibold"
+      >
+        How it works
+      </p>
+      <h2
+        id="how-heading"
+        class="text-4xl md:text-5xl font-bold tracking-tight mb-4"
+      >
+        From zero to double-unders in four weeks
+      </h2>
+      <p class="text-gray-400 text-lg">
+        A simple progression used by the athletes we train with. No equipment
+        beyond a rope and ten minutes a day.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <article
+        class="relative bg-gray-900 p-8 rounded-2xl border border-gray-800"
+      >
+        <span
+          class="absolute -top-4 left-8 bg-red-600 text-white text-sm font-bold px-3 py-1 rounded-full"
+          >1</span
+        >
+        <h3 class="text-xl font-bold mb-3 mt-2">Learn the bounce</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Master a quiet, low bounce before adding speed. Most beginners jump
+          too high and burn out in 30 seconds.
+        </p>
+      </article>
+      <article
+        class="relative bg-gray-900 p-8 rounded-2xl border border-gray-800"
+      >
+        <span
+          class="absolute -top-4 left-8 bg-red-600 text-white text-sm font-bold px-3 py-1 rounded-full"
+          >2</span
+        >
+        <h3 class="text-xl font-bold mb-3 mt-2">Build unbroken sets</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          String together 50, then 100, then 200 consecutive jumps without
+          breaking. This is the foundation for speed work.
+        </p>
+      </article>
+      <article
+        class="relative bg-gray-900 p-8 rounded-2xl border border-gray-800"
+      >
+        <span
+          class="absolute -top-4 left-8 bg-red-600 text-white text-sm font-bold px-3 py-1 rounded-full"
+          >3</span
+        >
+        <h3 class="text-xl font-bold mb-3 mt-2">Add the double-under</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Once your bounce is quiet and your sets are long, the double-under
+          becomes a timing problem, not a power problem.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Latest from the blog (placeholder structure) -->
+  <section
+    class="py-20 border-t border-gray-800"
+    aria-labelledby="blog-heading"
+  >
+    <div class="flex items-end justify-between mb-10">
+      <div>
+        <p
+          class="text-xs uppercase tracking-[0.3em] text-red-500 mb-3 font-semibold"
+        >
+          Blog
+        </p>
+        <h2
+          id="blog-heading"
+          class="text-4xl md:text-5xl font-bold tracking-tight"
+        >
+          Training insights
+        </h2>
+      </div>
+      <a
+        href="/blog"
+        class="hidden md:inline-flex items-center gap-2 text-red-400 hover:text-red-300 font-semibold transition"
+      >
+        All posts <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <a
+        href="/blog"
+        class="group bg-gray-900 p-8 rounded-2xl border border-gray-800 hover:border-gray-700 transition"
+      >
+        <p
+          class="text-xs uppercase tracking-widest text-red-500 mb-3 font-semibold"
+        >
+          Technique
+        </p>
+        <h3 class="text-2xl font-bold mb-3 group-hover:text-red-400 transition">
+          How to fix your double-under timing
+        </h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          The three most common timing faults and the drills that correct them
+          in a single session.
+        </p>
+      </a>
+      <a
+        href="/blog"
+        class="group bg-gray-900 p-8 rounded-2xl border border-gray-800 hover:border-gray-700 transition"
+      >
+        <p
+          class="text-xs uppercase tracking-widest text-red-500 mb-3 font-semibold"
+        >
+          Programming
+        </p>
+        <h3 class="text-2xl font-bold mb-3 group-hover:text-red-400 transition">
+          A 10-minute jump rope conditioning circuit
+        </h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Short on time? This circuit builds aerobic capacity without wrecking
+          your legs for the next day.
+        </p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section
+    class="py-24 border-t border-gray-800 text-center relative overflow-hidden"
+    aria-labelledby="cta-heading"
+  >
+    <div
+      class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(220,38,38,0.15),transparent_60%)]"
+      aria-hidden="true"
+    >
+    </div>
+    <h2
+      id="cta-heading"
+      class="text-4xl md:text-6xl font-black tracking-tighter mb-6"
+    >
+      READY TO <span class="text-red-500">SURGE</span>?
+    </h2>
+    <p class="text-gray-400 text-lg max-w-xl mx-auto mb-10">
+      Pick your rope, follow the plan, and see what four weeks of consistent
+      training does.
+    </p>
+    <a
+      href="/shop"
+      class="inline-block bg-red-600 hover:bg-red-500 px-10 py-4 rounded-lg font-semibold transition"
+    >
+      Shop Jump Ropes
+    </a>
+  </section>
+</BaseLayout>

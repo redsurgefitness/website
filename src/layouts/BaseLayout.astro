@@ -1,0 +1,105 @@
+---
+import "../styles/global.css";
+import { SEO } from "astro-seo-kit";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Red Surge Fitness: premium speed and weighted jump ropes plus expert jump rope training guides for athletes.",
+} = Astro.props;
+
+const siteName = "Red Surge Fitness";
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonicalURL.href}
+      openGraph={{
+        type: "website",
+        siteName: siteName,
+        url: canonicalURL.href,
+        title: title,
+        description: description,
+      }}
+      twitter={{
+        card: "summary_large_image",
+      }}
+    />
+
+    <!-- Organization schema: tells Google who you are site-wide -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: siteName,
+        url: "https://redsurgefitness.com",
+        description:
+          "Premium jump ropes and training insights for athletes who want to move faster and condition harder.",
+      })}
+    />
+  </head>
+
+  <body
+    class="bg-gray-950 text-white font-sans antialiased min-h-screen flex flex-col"
+  >
+    <!-- Skip link for accessibility + SEO signal -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-red-600 focus:px-4 focus:py-2 focus:rounded"
+    >
+      Skip to content
+    </a>
+
+    <header
+      class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur"
+    >
+      <nav
+        aria-label="Main navigation"
+        class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between"
+      >
+        <a
+          href="/"
+          aria-label="Red Surge Fitness home"
+          class="text-xl font-black tracking-tight text-red-500"
+        >
+          RED SURGE
+        </a>
+        <div class="flex gap-6 text-sm font-medium">
+          <a href="/" class="hover:text-red-400 transition">Home</a>
+          <a href="/about" class="hover:text-red-400 transition">About</a>
+          <a href="/blog" class="hover:text-red-400 transition">Blog</a>
+          <a href="/shop" class="hover:text-red-400 transition">Shop</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main-content" class="flex-1 max-w-5xl mx-auto w-full px-4 py-12">
+      <slot />
+    </main>
+
+    <footer class="border-t border-gray-800 mt-20">
+      <div
+        class="max-w-5xl mx-auto px-4 py-8 text-center text-gray-500 text-sm"
+      >
+        <p>
+          &copy; {new Date().getFullYear()} Red Surge Fitness. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

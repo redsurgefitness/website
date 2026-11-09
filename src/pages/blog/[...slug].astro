@@ -1,0 +1,146 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post: CollectionEntry<"blog">) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Article structured data for Google rich results
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: post.data.pubDate.toISOString(),
+  author: {
+    "@type": "Organization",
+    name: "Red Surge Fitness",
+    url: "https://redsurgefitness.com",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Red Surge Fitness",
+    url: "https://redsurgefitness.com",
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": canonicalURL.href,
+  },
+  ...(post.data.heroImage && {
+    image: new URL(post.data.heroImage, Astro.site).href,
+  }),
+  ...(post.data.tags.length > 0 && { keywords: post.data.tags.join(", ") }),
+};
+---
+
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <!-- Breadcrumbs -->
+  <nav aria-label="Breadcrumb" class="mb-10">
+    <ol class="flex items-center gap-2 text-sm text-gray-500">
+      <li><a href="/" class="hover:text-red-400 transition">Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li><a href="/blog" class="hover:text-red-400 transition">Blog</a></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-gray-300 truncate max-w-xs" aria-current="page">
+        {post.data.title}
+      </li>
+    </ol>
+  </nav>
+
+  <article>
+    <!-- Post header -->
+    <header class="mb-14">
+      <div class="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-5">
+        <time datetime={post.data.pubDate.toISOString()}>
+          {formatDate(post.data.pubDate)}
+        </time>
+        {
+          post.data.tags.length > 0 && (
+            <>
+              <span aria-hidden="true">·</span>
+              <span class="text-red-400 font-semibold uppercase tracking-widest">
+                {post.data.tags[0]}
+              </span>
+            </>
+          )
+        }
+      </div>
+      <h1
+        class="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-[1.05]"
+      >
+        {post.data.title}
+      </h1>
+      <p class="text-xl text-gray-400 leading-relaxed max-w-3xl">
+        {post.data.description}
+      </p>
+      {
+        post.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 mt-8">
+            {post.data.tags.map((tag) => (
+              <span class="text-xs uppercase tracking-widest text-gray-400 bg-gray-900 border border-gray-800 px-3 py-1.5 rounded-full">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )
+      }
+    </header>
+
+    <!-- Post body -->
+    <div
+      class="prose prose-invert prose-lg max-w-3xl prose-headings:font-bold prose-headings:tracking-tight prose-a:text-red-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-code:text-red-300"
+    >
+      <Content />
+    </div>
+
+    <!-- Post footer CTA -->
+    <aside
+      class="mt-20 bg-gradient-to-br from-gray-900 to-gray-950 p-10 rounded-2xl border border-gray-800"
+      aria-label="Shop call to action"
+    >
+      <h2 class="text-2xl md:text-3xl font-bold mb-3">
+        Put this into practice
+      </h2>
+      <p class="text-gray-400 mb-6 max-w-xl">
+        Browse our speed and weighted jump ropes — built for the training we
+        write about.
+      </p>
+      <a
+        href="/shop"
+        class="inline-block bg-red-600 hover:bg-red-500 px-8 py-3 rounded-lg font-semibold transition"
+      >
+        Shop Jump Ropes
+      </a>
+    </aside>
+  </article>
+
+  <!-- Back link -->
+  <div class="mt-12 pt-8 border-t border-gray-800">
+    <a
+      href="/blog"
+      class="inline-flex items-center gap-2 text-red-400 hover:text-red-300 font-semibold transition"
+    >
+      <span aria-hidden="true">←</span> Back to all articles
+    </a>
+  </div>
+</BaseLayout>

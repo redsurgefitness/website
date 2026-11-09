@@ -1,0 +1,308 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "About Red Surge Fitness";
+const description =
+  "Red Surge Fitness builds premium speed and weighted jump ropes for athletes who train seriously. Learn about our mission, our gear philosophy, and the team behind the ropes.";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Organization schema with AboutPage context
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: title,
+  description: description,
+  url: canonicalURL.href,
+  mainEntity: {
+    "@type": "Organization",
+    name: "Red Surge Fitness",
+    url: "https://redsurgefitness.com",
+    description:
+      "Premium jump ropes and training insights for athletes who want to move faster and condition harder.",
+    foundingDate: "2026",
+    knowsAbout: [
+      "Jump rope training",
+      "Double-unders",
+      "Speed rope technique",
+      "Weighted rope conditioning",
+      "Athletic conditioning",
+    ],
+  },
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(aboutSchema)} />
+
+  <!-- Hero -->
+  <section
+    class="relative py-24 md:py-32 overflow-hidden"
+    aria-labelledby="about-heading"
+  >
+    <div
+      class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_rgba(220,38,38,0.14),transparent_60%)]"
+      aria-hidden="true"
+    >
+    </div>
+    <p
+      class="text-xs uppercase tracking-[0.4em] text-red-500 mb-6 font-semibold"
+    >
+      About Red Surge
+    </p>
+    <h1
+      id="about-heading"
+      class="text-5xl md:text-7xl font-black tracking-tighter mb-8 leading-[0.95] max-w-4xl"
+    >
+      BUILT BY ATHLETES.<br />
+      <span class="text-red-500">FOR ATHLETES.</span>
+    </h1>
+    <p class="text-gray-400 text-lg md:text-xl max-w-2xl leading-relaxed">
+      Red Surge Fitness exists for one reason: to make jump rope training gear
+      that gets out of your way. No gimmicks, no hype cycles — just equipment
+      that performs and guidance that actually helps you improve.
+    </p>
+  </section>
+
+  <!-- Mission -->
+  <section
+    class="py-20 border-t border-gray-800"
+    aria-labelledby="mission-heading"
+  >
+    <div class="grid md:grid-cols-3 gap-12">
+      <div class="md:col-span-1">
+        <p
+          class="text-xs uppercase tracking-[0.3em] text-red-500 mb-3 font-semibold"
+        >
+          Mission
+        </p>
+        <h2
+          id="mission-heading"
+          class="text-3xl md:text-4xl font-bold tracking-tight leading-tight"
+        >
+          Training gear should never be the limiting factor
+        </h2>
+      </div>
+      <div
+        class="md:col-span-2 space-y-6 text-gray-400 text-lg leading-relaxed"
+      >
+        <p>
+          Jump rope is one of the most efficient conditioning tools in
+          existence. It builds aerobic capacity, coordination, and explosive
+          power with almost no equipment. But most jump ropes on the market are
+          built for casual use — plastic cables, weak bearings, handles that
+          slip.
+        </p>
+        <p>
+          We started Red Surge Fitness because we got tired of replacing ropes
+          every few months. The gear we build is designed for the way serious
+          athletes actually train: long sets, high volume, and double-unders
+          that need to land every single time.
+        </p>
+        <p>
+          Every product we make is tested in real training sessions before it
+          ships. If it doesn't survive a four-week block of daily use, it
+          doesn't go in the catalog.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline / story -->
+  <section
+    class="py-20 border-t border-gray-800"
+    aria-labelledby="story-heading"
+  >
+    <div class="max-w-3xl mb-14">
+      <p
+        class="text-xs uppercase tracking-[0.3em] text-red-500 mb-3 font-semibold"
+      >
+        Our story
+      </p>
+      <h2
+        id="story-heading"
+        class="text-4xl md:text-5xl font-bold tracking-tight mb-4"
+      >
+        How Red Surge came to be
+      </h2>
+      <p class="text-gray-400 text-lg">
+        A short history of the gear and the thinking behind it.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <article
+        class="relative bg-gray-900 p-8 rounded-2xl border border-gray-800"
+      >
+        <span
+          class="absolute -top-4 left-8 bg-red-600 text-white text-sm font-bold px-3 py-1 rounded-full"
+          >2024</span
+        >
+        <h3 class="text-xl font-bold mb-3 mt-2">The frustration</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          After replacing a third speed rope in a year, we started looking at
+          what was actually breaking. The answer: bearings and cable crimps —
+          both solvable with better materials.
+        </p>
+      </article>
+      <article
+        class="relative bg-gray-900 p-8 rounded-2xl border border-gray-800"
+      >
+        <span
+          class="absolute -top-4 left-8 bg-red-600 text-white text-sm font-bold px-3 py-1 rounded-full"
+          >2025</span
+        >
+        <h3 class="text-xl font-bold mb-3 mt-2">The prototype</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Six months of iterating with a small group of competitive jumpers.
+          Sealed bearings, machined aluminum handles, and a cable crimp that
+          doesn't loosen under speed work.
+        </p>
+      </article>
+      <article
+        class="relative bg-gray-900 p-8 rounded-2xl border border-gray-800"
+      >
+        <span
+          class="absolute -top-4 left-8 bg-red-600 text-white text-sm font-bold px-3 py-1 rounded-full"
+          >2026</span
+        >
+        <h3 class="text-xl font-bold mb-3 mt-2">Red Surge launches</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Two ropes — speed and weighted — plus the training guides we wish we'd
+          had when we started. More products in development.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section
+    class="py-20 border-t border-gray-800"
+    aria-labelledby="values-heading"
+  >
+    <div class="max-w-3xl mb-14">
+      <p
+        class="text-xs uppercase tracking-[0.3em] text-red-500 mb-3 font-semibold"
+      >
+        What we believe
+      </p>
+      <h2
+        id="values-heading"
+        class="text-4xl md:text-5xl font-bold tracking-tight mb-4"
+      >
+        Four principles behind every product
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <article class="bg-gray-900 p-8 rounded-2xl border border-gray-800">
+        <h3 class="text-xl font-bold mb-3 text-red-400">
+          Function over decoration
+        </h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          If a feature doesn't make you faster, stronger, or more consistent, it
+          doesn't belong on the product. Every design decision serves training.
+        </p>
+      </article>
+      <article class="bg-gray-900 p-8 rounded-2xl border border-gray-800">
+        <h3 class="text-xl font-bold mb-3 text-red-400">
+          Durability is a feature
+        </h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Gear that breaks is gear that interrupts your training block. We build
+          for the long haul, not the unboxing video.
+        </p>
+      </article>
+      <article class="bg-gray-900 p-8 rounded-2xl border border-gray-800">
+        <h3 class="text-xl font-bold mb-3 text-red-400">Education first</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Every product comes with access to free training guides. We'd rather
+          you buy one rope and use it well than five and use none of them.
+        </p>
+      </article>
+      <article class="bg-gray-900 p-8 rounded-2xl border border-gray-800">
+        <h3 class="text-xl font-bold mb-3 text-red-400">Honest specs</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Cable weight, handle length, bearing type — every spec is published in
+          full. No vague marketing language about "premium materials."
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Who we serve -->
+  <section class="py-20 border-t border-gray-800" aria-labelledby="who-heading">
+    <div class="max-w-3xl mb-14">
+      <p
+        class="text-xs uppercase tracking-[0.3em] text-red-500 mb-3 font-semibold"
+      >
+        Who we build for
+      </p>
+      <h2
+        id="who-heading"
+        class="text-4xl md:text-5xl font-bold tracking-tight mb-4"
+      >
+        Anyone who takes conditioning seriously
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <article class="bg-gray-900 p-8 rounded-2xl border border-gray-800">
+        <h3 class="text-xl font-bold mb-3">CrossFit athletes</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Double-unders are a scored skill. Our speed ropes are built for
+          unbroken sets and PR attempts.
+        </p>
+      </article>
+      <article class="bg-gray-900 p-8 rounded-2xl border border-gray-800">
+        <h3 class="text-xl font-bold mb-3">Boxers & martial artists</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Jump rope is foundational conditioning in combat sports. Weighted
+          ropes build the shoulder endurance that carries into rounds.
+        </p>
+      </article>
+      <article class="bg-gray-900 p-8 rounded-2xl border border-gray-800">
+        <h3 class="text-xl font-bold mb-3">Everyday athletes</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Ten minutes a day of jump rope is one of the most efficient
+          conditioning tools available. Our guides make it approachable.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section
+    class="py-24 mt-20 border-t border-gray-800 text-center relative overflow-hidden"
+    aria-labelledby="cta-heading"
+  >
+    <div
+      class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(220,38,38,0.15),transparent_60%)]"
+      aria-hidden="true"
+    >
+    </div>
+    <h2
+      id="cta-heading"
+      class="text-4xl md:text-5xl font-black tracking-tighter mb-6"
+    >
+      SEE THE <span class="text-red-500">GEAR</span>
+    </h2>
+    <p class="text-gray-400 text-lg max-w-xl mx-auto mb-10">
+      Speed ropes, weighted ropes, and the guides that go with them.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href="/shop"
+        class="bg-red-600 hover:bg-red-500 px-10 py-4 rounded-lg font-semibold transition"
+      >
+        Shop Jump Ropes
+      </a>
+      <a
+        href="/blog"
+        class="border border-gray-700 hover:border-gray-500 px-10 py-4 rounded-lg font-semibold transition"
+      >
+        Read the Blog
+      </a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,158 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const [featured, ...rest] = posts;
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const title = "Jump Rope Training Blog";
+const description =
+  "Technique breakdowns, conditioning workouts, and programming guides for jump rope athletes. Learn double-unders, build endurance, and train smarter with Red Surge Fitness.";
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Page header -->
+  <section class="relative py-20 md:py-28 overflow-hidden" aria-labelledby="blog-heading">
+    <div
+      class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_rgba(220,38,38,0.12),transparent_60%)]"
+      aria-hidden="true"
+    ></div>
+    <p class="text-xs uppercase tracking-[0.4em] text-red-500 mb-6 font-semibold">
+      The Red Surge Blog
+    </p>
+    <h1
+      id="blog-heading"
+      class="text-5xl md:text-7xl font-black tracking-tighter mb-6 leading-[0.95]"
+    >
+      TRAINING<br />
+      <span class="text-red-500">INSIGHTS.</span>
+    </h1>
+    <p class="text-gray-400 text-lg md:text-xl max-w-2xl leading-relaxed">
+      Technique breakdowns, conditioning workouts, and programming guides for
+      athletes who take their jump rope training seriously.
+    </p>
+  </section>
+
+  {posts.length === 0 ? (
+    <section class="py-20 border-t border-gray-800">
+      <p class="text-gray-400 text-center">No posts published yet. Check back soon.</p>
+    </section>
+  ) : (
+    <>
+      <!-- Featured post -->
+      {featured && (
+        <section class="pb-12 border-t border-gray-800 pt-16" aria-labelledby="featured-heading">
+          <p class="text-xs uppercase tracking-[0.3em] text-red-500 mb-6 font-semibold">
+            Latest
+          </p>
+          <a
+            href={`/blog/${featured.id}/`}
+            class="group block bg-gradient-to-br from-gray-900 to-gray-950 p-10 md:p-14 rounded-2xl border border-gray-800 hover:border-gray-700 transition"
+          >
+            <div class="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-5">
+              <time datetime={featured.data.pubDate.toISOString()}>
+                {formatDate(featured.data.pubDate)}
+              </time>
+              {featured.data.tags.length > 0 && (
+                <>
+                  <span aria-hidden="true">·</span>
+                  <span class="text-red-400 font-semibold uppercase tracking-widest">
+                    {featured.data.tags[0]}
+                  </span>
+                </>
+              )}
+            </div>
+            <h2
+              id="featured-heading"
+              class="text-3xl md:text-5xl font-bold tracking-tight mb-5 group-hover:text-red-400 transition leading-tight"
+            >
+              {featured.data.title}
+            </h2>
+            <p class="text-gray-400 text-lg leading-relaxed max-w-3xl mb-8">
+              {featured.data.description}
+            </p>
+            <span class="inline-flex items-center gap-2 text-red-400 font-semibold">
+              Read the article <span aria-hidden="true" class="transition group-hover:translate-x-1">→</span>
+            </span>
+          </a>
+        </section>
+      )}
+
+      <!-- Post grid -->
+      {rest.length > 0 && (
+        <section class="py-16 border-t border-gray-800" aria-labelledby="all-posts-heading">
+          <div class="flex items-end justify-between mb-10">
+            <div>
+              <p class="text-xs uppercase tracking-[0.3em] text-red-500 mb-3 font-semibold">
+                Archive
+              </p>
+              <h2 id="all-posts-heading" class="text-3xl md:text-4xl font-bold tracking-tight">
+                All articles
+              </h2>
+            </div>
+            <p class="hidden md:block text-sm text-gray-500">
+              {posts.length} {posts.length === 1 ? 'article' : 'articles'}
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            {rest.map((post) => (
+              <a
+                href={`/blog/${post.id}/`}
+                class="group bg-gray-900 p-8 rounded-2xl border border-gray-800 hover:border-gray-700 transition flex flex-col"
+              >
+                <div class="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-4">
+                  <time datetime={post.data.pubDate.toISOString()}>
+                    {formatDate(post.data.pubDate)}
+                  </time>
+                  {post.data.tags.length > 0 && (
+                    <>
+                      <span aria-hidden="true">·</span>
+                      <span class="text-red-400 font-semibold uppercase tracking-widest">
+                        {post.data.tags[0]}
+                      </span>
+                    </>
+                  )}
+                </div>
+                <h3 class="text-2xl font-bold mb-3 group-hover:text-red-400 transition leading-snug">
+                  {post.data.title}
+                </h3>
+                <p class="text-gray-400 text-sm leading-relaxed flex-1">
+                  {post.data.description}
+                </p>
+                <span class="mt-6 inline-flex items-center gap-2 text-red-400 font-semibold text-sm">
+                  Read more <span aria-hidden="true" class="transition group-hover:translate-x-1">→</span>
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+    </>
+  )}
+
+  <!-- Final CTA -->
+  <section class="py-24 mt-20 border-t border-gray-800 text-center relative overflow-hidden" aria-labelledby="cta-heading">
+    <div
+      class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(220,38,38,0.15),transparent_60%)]"
+      aria-hidden="true"
+    ></div>
+    <h2 id="cta-heading" class="text-4xl md:text-5xl font-black tracking-tighter mb-6">
+      READY TO <span class="text-red-500">TRAIN</span>?
+    </h2>
+    <p class="text-gray-400 text-lg max-w-xl mx-auto mb-10">
+      Pick up a speed or weighted rope and start applying what you've read.
+    </p>
+    <a
+      href="/shop"
+      class="inline-block bg-red-600 hover:bg-red-500 px-10 py-4 rounded-lg font-semibold transition"
+    >
+      Shop Jump Ropes
+    </a>
+  </section>
+</BaseLayout>
