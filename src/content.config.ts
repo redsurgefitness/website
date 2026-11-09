@@ -1,4 +1,4 @@
-// src/content/config.ts
+// src/content.config.ts
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
@@ -8,6 +8,7 @@ const blog = defineCollection({
     title: z.string(),
     description: z.string(),
     pubDate: z.coerce.date(),
+    author: z.string().default("Collin Stewart"),
     heroImage: z.string().optional(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),

@@ -20,9 +20,18 @@ const formatDate = (date: Date) =>
     day: "numeric",
   });
 
+const wordCount = post.body?.trim().split(/\s+/).length ?? 0;
+const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
+const authorInitials = post.data.author
+  .split(" ")
+  .map((n) => n[0])
+  .join("")
+  .slice(0, 2)
+  .toUpperCase();
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-// Article structured data for Google rich results
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -31,9 +40,9 @@ const articleSchema = {
   datePublished: post.data.pubDate.toISOString(),
   dateModified: post.data.pubDate.toISOString(),
   author: {
-    "@type": "Organization",
-    name: "Red Surge Fitness",
-    url: "https://redsurgefitness.com",
+    "@type": "Person",
+    name: post.data.author,
+    url: new URL("/about", Astro.site).href,
   },
   publisher: {
     "@type": "Organization",
@@ -55,12 +64,12 @@ const articleSchema = {
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
 
   <!-- Breadcrumbs -->
-  <nav aria-label="Breadcrumb" class="mb-10">
-    <ol class="flex items-center gap-2 text-sm text-gray-500">
+  <nav aria-label="Breadcrumb" class="mb-8">
+    <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-400">
       <li><a href="/" class="hover:text-red-400 transition">Home</a></li>
-      <li aria-hidden="true">/</li>
+      <li aria-hidden="true" class="text-gray-600">/</li>
       <li><a href="/blog" class="hover:text-red-400 transition">Blog</a></li>
-      <li aria-hidden="true">/</li>
+      <li aria-hidden="true" class="text-gray-600">/</li>
       <li class="text-gray-300 truncate max-w-xs" aria-current="page">
         {post.data.title}
       </li>
@@ -69,53 +78,103 @@ const articleSchema = {
 
   <article>
     <!-- Post header -->
-    <header class="mb-14">
-      <div class="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-5">
-        <time datetime={post.data.pubDate.toISOString()}>
-          {formatDate(post.data.pubDate)}
-        </time>
-        {
-          post.data.tags.length > 0 && (
-            <>
-              <span aria-hidden="true">·</span>
-              <span class="text-red-400 font-semibold uppercase tracking-widest">
-                {post.data.tags[0]}
-              </span>
-            </>
-          )
-        }
-      </div>
+    <header class="mb-12">
+      {
+        post.data.tags.length > 0 && (
+          <p class="text-xs uppercase tracking-[0.3em] text-red-500 mb-5 font-semibold">
+            {post.data.tags[0]}
+          </p>
+        )
+      }
       <h1
-        class="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-[1.05]"
+        class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter mb-6 leading-[1.05]"
       >
         {post.data.title}
       </h1>
-      <p class="text-xl text-gray-400 leading-relaxed max-w-3xl">
+      <p
+        class="text-lg md:text-xl text-gray-400 leading-relaxed max-w-6xl mb-8"
+      >
         {post.data.description}
       </p>
-      {
-        post.data.tags.length > 0 && (
-          <div class="flex flex-wrap gap-2 mt-8">
-            {post.data.tags.map((tag) => (
-              <span class="text-xs uppercase tracking-widest text-gray-400 bg-gray-900 border border-gray-800 px-3 py-1.5 rounded-full">
-                {tag}
-              </span>
-            ))}
+
+      <!-- Author + meta bar -->
+      <div
+        class="flex flex-wrap items-center gap-x-4 gap-y-3 py-6 border-y border-gray-800"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center font-bold text-white text-sm"
+          >
+            {authorInitials}
           </div>
-        )
-      }
+          <div>
+            <p class="text-sm font-semibold text-white">{post.data.author}</p>
+            <p class="text-xs text-gray-500">Founder, Red Surge Fitness</p>
+          </div>
+        </div>
+        <span aria-hidden="true" class="text-gray-700 hidden sm:inline">·</span>
+        <time
+          datetime={post.data.pubDate.toISOString()}
+          class="text-sm text-gray-400"
+        >
+          {formatDate(post.data.pubDate)}
+        </time>
+        <span aria-hidden="true" class="text-gray-700 hidden sm:inline">·</span>
+        <span class="text-sm text-gray-400">{readingTime} min read</span>
+      </div>
     </header>
+
+    <!-- Hero image -->
+    {
+      post.data.heroImage && (
+        <figure class="mb-12">
+          <img
+            src={post.data.heroImage}
+            alt={post.data.title}
+            width="1600"
+            height="840"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            class="w-full rounded-2xl border border-gray-800 object-cover aspect-[1600/840]"
+          />
+        </figure>
+      )
+    }
 
     <!-- Post body -->
     <div
-      class="prose prose-invert prose-lg max-w-3xl prose-headings:font-bold prose-headings:tracking-tight prose-a:text-red-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-code:text-red-300"
+      class="prose prose-invert prose-lg max-w-6xl
+             prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-white
+             prose-h2:mt-12 prose-h2:mb-4 prose-h2:text-3xl
+             prose-h3:mt-8 prose-h3:text-2xl
+             prose-p:text-gray-300 prose-p:leading-relaxed
+             prose-a:text-red-400 prose-a:no-underline hover:prose-a:underline
+             prose-strong:text-white
+             prose-code:text-red-300 prose-code:bg-gray-900 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
+             prose-li:text-gray-300
+             prose-blockquote:border-red-500 prose-blockquote:text-gray-400
+             prose-table:text-sm"
     >
       <Content />
     </div>
 
+    <!-- Tags -->
+    {
+      post.data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mt-12 pt-8 border-t border-gray-800">
+          {post.data.tags.map((tag) => (
+            <span class="text-xs uppercase tracking-widest text-gray-400 bg-gray-900 border border-gray-800 px-3 py-1.5 rounded-full">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )
+    }
+
     <!-- Post footer CTA -->
     <aside
-      class="mt-20 bg-gradient-to-br from-gray-900 to-gray-950 p-10 rounded-2xl border border-gray-800"
+      class="mt-16 bg-gradient-to-br from-gray-900 to-gray-950 p-10 rounded-2xl border border-gray-800"
       aria-label="Shop call to action"
     >
       <h2 class="text-2xl md:text-3xl font-bold mb-3">

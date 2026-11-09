@@ -40,7 +40,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       }}
     />
 
-    <!-- Organization schema: tells Google who you are site-wide -->
     <script
       type="application/ld+json"
       set:html={JSON.stringify({
@@ -57,7 +56,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <body
     class="bg-gray-950 text-white font-sans antialiased min-h-screen flex flex-col"
   >
-    <!-- Skip link for accessibility + SEO signal -->
     <a
       href="#main-content"
       class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-red-600 focus:px-4 focus:py-2 focus:rounded"
@@ -70,7 +68,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     >
       <nav
         aria-label="Main navigation"
-        class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between"
+        class="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between"
       >
         <a
           href="/"
@@ -81,20 +79,23 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         </a>
         <div class="flex gap-6 text-sm font-medium">
           <a href="/" class="hover:text-red-400 transition">Home</a>
-          <a href="/about" class="hover:text-red-400 transition">About</a>
           <a href="/blog" class="hover:text-red-400 transition">Blog</a>
           <a href="/shop" class="hover:text-red-400 transition">Shop</a>
+          <a href="/about" class="hover:text-red-400 transition">About</a>
         </div>
       </nav>
     </header>
 
-    <main id="main-content" class="flex-1 max-w-5xl mx-auto w-full px-4 py-12">
+    <main
+      id="main-content"
+      class="flex-1 max-w-7xl mx-auto w-full px-6 lg:px-8 py-12"
+    >
       <slot />
     </main>
 
     <footer class="border-t border-gray-800 mt-20">
       <div
-        class="max-w-5xl mx-auto px-4 py-8 text-center text-gray-300 text-sm"
+        class="max-w-7xl mx-auto px-6 lg:px-8 py-8 text-center text-gray-400 text-sm"
       >
         <p>
           &copy; {new Date().getFullYear()} Red Surge Fitness. All rights reserved.

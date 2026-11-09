@@ -2,6 +2,8 @@
 title: "Does Jumping Make You Taller? The Honest Answer (Backed by Science)"
 description: "Most people get this wrong. Here's what actually happens to your height when you jump rope daily — and the one thing that does work."
 pubDate: 2026-11-09
+author: "Collin Stewart"
+heroImage: "/images/blog/jump-rope-make-you-taller-is-it-possible.webp"
 tags: ["height", "jumping rope", "science"]
 draft: false
 ---
