@@ -2,7 +2,7 @@
 title: "Jump Rope Calories Burned Per Hour (By Bodyweight)"
 description: "Jump rope burns 600–900 calories per hour depending on pace and bodyweight. See the exact per-hour and per-minute numbers, plus why most estimates are too high."
 pubDate: 2026-11-09
-updatedDate: 2026-11-09
+updatedDate: 2026-11-07
 author: "collin-stewart"
 heroImage: "/images/blog/jump-rope-calories-burned-per-hour-how-many-calories.webp"
 heroImageAlt: "Woman holding a jump rope in her right hand with a boxing ring behind her"

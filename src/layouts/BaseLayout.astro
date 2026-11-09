@@ -24,6 +24,7 @@ const siteName = "Red Surge Fitness";
 const site = Astro.site ?? new URL("https://redsurgefitness.com");
 const canonicalURL = new URL(Astro.url.pathname, site);
 const organizationId = `${site.origin}/#organization`;
+const websiteId = `${site.origin}/#website`;
 const logoUrl = new URL("/logo.png", site).href;
 
 const openGraph = {
@@ -44,21 +45,35 @@ const openGraph = {
     : {}),
 };
 
-const organizationSchema = {
+const siteSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": organizationId,
-  name: siteName,
-  url: site.origin,
-  logo: {
-    "@type": "ImageObject",
-    url: logoUrl,
-  },
-  description:
-    "Premium jump ropes and training insights for athletes who want to move faster and condition harder.",
-  sameAs: [
-    "https://www.instagram.com/cstewruns",
-    "https://www.tiktok.com/@cstewruns",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: site.origin,
+      name: siteName,
+      description:
+        "Premium jump ropes and training guides for athletes who condition seriously.",
+      publisher: { "@id": organizationId },
+      inLanguage: "en-US",
+    },
+    {
+      "@type": "Organization",
+      "@id": organizationId,
+      name: siteName,
+      url: site.origin,
+      logo: {
+        "@type": "ImageObject",
+        url: logoUrl,
+      },
+      description:
+        "Premium jump ropes and training insights for athletes who want to move faster and condition harder.",
+      sameAs: [
+        "https://www.instagram.com/cstewruns",
+        "https://www.tiktok.com/@cstewruns",
+      ],
+    },
   ],
 };
 ---
@@ -81,10 +96,7 @@ const organizationSchema = {
       twitter={{ card: "summary_large_image" }}
     />
 
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify(organizationSchema)}
-    />
+    <script type="application/ld+json" set:html={JSON.stringify(siteSchema)} />
   </head>
 
   <body

@@ -2,7 +2,7 @@
 title: "Jump Rope vs Running: Which Is Better Cardio?"
 description: "Jump rope vs running: the '10 minutes = 30 minutes' claim is false. See the real calorie and VO2 max data, joint loads, and who should pick which."
 pubDate: 2026-11-09
-updatedDate: 2026-11-09
+updatedDate: 2026-11-08
 author: "collin-stewart"
 heroImage: "/images/blog/jump-rope-equivalent-to-running-which-is-better-cardio.webp"
 heroImageAlt: "Athlete jumping rope outside near grass while on pavement with a white shirt"

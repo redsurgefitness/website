@@ -35,6 +35,9 @@ const description =
 
 const canonicalURL = new URL(Astro.url.pathname, site);
 
+const websiteId = `${site.origin}/#website`;
+const organizationId = `${site.origin}/#organization`;
+
 const collectionSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
@@ -42,7 +45,11 @@ const collectionSchema = {
   name: title,
   description,
   url: canonicalURL.href,
-  isPartOf: { "@id": `${site.origin}/#organization` },
+  inLanguage: "en-US",
+  // WebSite is a CreativeWork — this is the valid target for isPartOf
+  isPartOf: { "@id": websiteId },
+  // Organization belongs here, not in isPartOf
+  publisher: { "@id": organizationId },
   mainEntity: {
     "@type": "ItemList",
     numberOfItems: posts.length,
@@ -58,14 +65,10 @@ const collectionSchema = {
 const breadcrumbs = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
+  "@id": `${canonicalURL.href}#breadcrumbs`,
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: site.origin },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Blog",
-      item: canonicalURL.href,
-    },
+    { "@type": "ListItem", position: 2, name: "Blog", item: canonicalURL.href },
   ],
 };
 ---
