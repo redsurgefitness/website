@@ -1,7 +1,7 @@
 ---
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { Image } from "astro:assets";
+import { getAuthor } from "../../lib/authors";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
@@ -14,6 +14,8 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
+const site = Astro.site ?? new URL("https://redsurgefitness.com");
+
 const formatDate = (date: Date) =>
   date.toLocaleDateString("en-US", {
     year: "numeric",
@@ -24,45 +26,122 @@ const formatDate = (date: Date) =>
 const wordCount = post.body?.trim().split(/\s+/).length ?? 0;
 const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 
-const authorInitials = post.data.author
+// --- Author lookup ---
+const authorEntry = await getAuthor(post.data.author);
+const authorName = authorEntry?.data.name ?? post.data.author;
+const authorRole = authorEntry?.data.role ?? "Red Surge Fitness";
+const authorAvatar = authorEntry?.data.avatar;
+const authorUrl = authorEntry ? `/authors/${authorEntry.id}/` : "/about";
+const authorUrlAbsolute = new URL(authorUrl, site).href;
+
+const authorInitials = authorName
   .split(" ")
   .map((n) => n[0])
   .join("")
   .slice(0, 2)
   .toUpperCase();
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+// --- URLs & dates ---
+const canonicalURL = new URL(Astro.url.pathname, site);
+const postUrl = canonicalURL.href;
+const dateModified = post.data.updatedDate ?? post.data.pubDate;
 
-const articleSchema = {
-  "@context": "https://schema.org",
+// --- Structured data ---
+const organizationId = `${site.origin}/#organization`;
+const personId = authorEntry
+  ? `${authorUrlAbsolute}#person`
+  : `${postUrl}#author`;
+
+const person = authorEntry
+  ? {
+      "@type": "Person",
+      "@id": personId,
+      name: authorEntry.data.name,
+      jobTitle: authorEntry.data.role,
+      description: authorEntry.data.shortBio,
+      url: authorUrlAbsolute,
+      image: new URL(authorEntry.data.avatar, site).href,
+      alumniOf: authorEntry.data.alumniOf.map((name) => ({
+        "@type": "CollegeOrUniversity",
+        name,
+      })),
+      knowsAbout: authorEntry.data.knowsAbout,
+      sameAs: authorEntry.data.sameAs,
+    }
+  : {
+      "@type": "Person",
+      "@id": personId,
+      name: authorName,
+    };
+
+const article = {
   "@type": "Article",
+  "@id": `${postUrl}#article`,
   headline: post.data.title,
   description: post.data.description,
+  image: [new URL(post.data.heroImage, site).href],
   datePublished: post.data.pubDate.toISOString(),
-  dateModified: post.data.pubDate.toISOString(),
-  author: {
-    "@type": "Person",
-    name: post.data.author,
-    url: new URL("/about", Astro.site).href,
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "Red Surge Fitness",
-    url: "https://redsurgefitness.com",
-  },
-  mainEntityOfPage: {
-    "@type": "WebPage",
-    "@id": canonicalURL.href,
-  },
-  ...(post.data.heroImage && {
-    image: new URL(post.data.heroImage, Astro.site).href,
-  }),
-  ...(post.data.tags.length > 0 && { keywords: post.data.tags.join(", ") }),
+  dateModified: dateModified.toISOString(),
+  author: { "@id": personId },
+  publisher: { "@id": organizationId },
+  mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
+  keywords: post.data.tags.join(", "),
+  isAccessibleForFree: true,
+};
+
+const faqPage =
+  post.data.faq.length > 0
+    ? {
+        "@type": "FAQPage",
+        "@id": `${postUrl}#faq`,
+        mainEntity: post.data.faq.map(({ q, a }) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: { "@type": "Answer", text: a },
+        })),
+      }
+    : null;
+
+const breadcrumbs = {
+  "@type": "BreadcrumbList",
+  "@id": `${postUrl}#breadcrumbs`,
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: new URL("/", site).href,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Blog",
+      item: new URL("/blog", site).href,
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: post.data.title,
+      item: postUrl,
+    },
+  ],
+};
+
+const graph = {
+  "@context": "https://schema.org",
+  "@graph": [person, article, faqPage, breadcrumbs].filter(Boolean),
 };
 ---
 
-<BaseLayout title={post.data.title} description={post.data.description}>
-  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  noindex={post.data.noindex}
+  ogType="article"
+  image={post.data.heroImage}
+  imageAlt={post.data.heroImageAlt}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(graph)} />
 
   <!-- Breadcrumbs -->
   <nav aria-label="Breadcrumb" class="mb-8">
@@ -102,17 +181,34 @@ const articleSchema = {
       <div
         class="flex flex-wrap items-center gap-x-4 gap-y-3 py-6 border-y border-gray-800"
       >
-        <div class="flex items-center gap-3">
-          <div
-            class="w-10 h-10 rounded-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center font-bold text-white text-sm"
-          >
-            {authorInitials}
-          </div>
-          <div>
-            <p class="text-sm font-semibold text-white">{post.data.author}</p>
-            <p class="text-xs text-gray-300">Founder, Red Surge Fitness</p>
-          </div>
-        </div>
+        <a href={authorUrl} rel="author" class="flex items-center gap-3 group">
+          {
+            authorAvatar ? (
+              <img
+                src={authorAvatar}
+                alt=""
+                width="40"
+                height="40"
+                class="w-10 h-10 rounded-full object-cover border border-gray-800"
+              />
+            ) : (
+              <span
+                aria-hidden="true"
+                class="w-10 h-10 rounded-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center font-bold text-white text-sm"
+              >
+                {authorInitials}
+              </span>
+            )
+          }
+          <span class="flex flex-col">
+            <span
+              class="text-sm font-semibold text-white group-hover:text-red-400 transition"
+            >
+              {authorName}
+            </span>
+            <span class="text-xs text-gray-300">{authorRole}</span>
+          </span>
+        </a>
         <span aria-hidden="true" class="text-gray-700 hidden sm:inline">·</span>
         <time
           datetime={post.data.pubDate.toISOString()}
@@ -120,6 +216,21 @@ const articleSchema = {
         >
           {formatDate(post.data.pubDate)}
         </time>
+        {
+          post.data.updatedDate && (
+            <>
+              <span aria-hidden="true" class="text-gray-700 hidden sm:inline">
+                ·
+              </span>
+              <span class="text-sm text-gray-400">
+                Updated{" "}
+                <time datetime={dateModified.toISOString()}>
+                  {formatDate(dateModified)}
+                </time>
+              </span>
+            </>
+          )
+        }
         <span aria-hidden="true" class="text-gray-700 hidden sm:inline">·</span>
         <span class="text-sm text-gray-400">{readingTime} min read</span>
       </div>
@@ -129,11 +240,11 @@ const articleSchema = {
     {
       post.data.heroImage && (
         <figure class="mb-12">
-          <Image
+          <img
             src={post.data.heroImage}
-            alt={post.data.title}
-            width={1600}
-            height={840}
+            alt={post.data.heroImageAlt}
+            width="1600"
+            height="840"
             loading="eager"
             fetchpriority="high"
             decoding="async"

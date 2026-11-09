@@ -5,15 +5,62 @@ import { SEO } from "astro-seo-kit";
 interface Props {
   title: string;
   description?: string;
+  noindex?: boolean;
+  ogType?: "website" | "article";
+  image?: string;
+  imageAlt?: string;
 }
 
 const {
   title,
   description = "Red Surge Fitness: premium speed and weighted jump ropes plus expert jump rope training guides for athletes.",
+  noindex = false,
+  ogType = "website",
+  image,
+  imageAlt,
 } = Astro.props;
 
 const siteName = "Red Surge Fitness";
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const site = Astro.site ?? new URL("https://redsurgefitness.com");
+const canonicalURL = new URL(Astro.url.pathname, site);
+const organizationId = `${site.origin}/#organization`;
+const logoUrl = new URL("/logo.png", site).href;
+
+const openGraph = {
+  type: ogType,
+  siteName,
+  url: canonicalURL.href,
+  title,
+  description,
+  ...(image
+    ? {
+        images: [
+          {
+            url: new URL(image, site).href,
+            alt: imageAlt ?? title,
+          },
+        ],
+      }
+    : {}),
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": organizationId,
+  name: siteName,
+  url: site.origin,
+  logo: {
+    "@type": "ImageObject",
+    url: logoUrl,
+  },
+  description:
+    "Premium jump ropes and training insights for athletes who want to move faster and condition harder.",
+  sameAs: [
+    "https://www.instagram.com/cstewruns",
+    "https://www.tiktok.com/@cstewruns",
+  ],
+};
 ---
 
 <!doctype html>
@@ -24,32 +71,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalURL} />
 
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
     <SEO
       title={title}
       description={description}
       canonical={canonicalURL.href}
-      openGraph={{
-        type: "website",
-        siteName: siteName,
-        url: canonicalURL.href,
-        title: title,
-        description: description,
-      }}
-      twitter={{
-        card: "summary_large_image",
-      }}
+      openGraph={openGraph}
+      twitter={{ card: "summary_large_image" }}
     />
 
     <script
       type="application/ld+json"
-      set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        name: siteName,
-        url: "https://redsurgefitness.com",
-        description:
-          "Premium jump ropes and training insights for athletes who want to move faster and condition harder.",
-      })}
+      set:html={JSON.stringify(organizationSchema)}
     />
   </head>
 
@@ -79,9 +113,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         </a>
         <div class="flex gap-6 text-sm font-medium">
           <a href="/" class="hover:text-red-400 transition">Home</a>
+          <a href="/about" class="hover:text-red-400 transition">About</a>
           <a href="/blog" class="hover:text-red-400 transition">Blog</a>
           <a href="/shop" class="hover:text-red-400 transition">Shop</a>
-          <a href="/about" class="hover:text-red-400 transition">About</a>
         </div>
       </nav>
     </header>

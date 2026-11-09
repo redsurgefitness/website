@@ -1,124 +1,115 @@
 ---
-title: "Jump Rope Calories Burned Per Hour: Calculator + Chart (2026)"
-description: "How many calories does jump rope actually burn? Use our calculator or check the chart for your weight, pace, and duration. Real numbers, not marketing."
+title: "Jump Rope Calories Burned Per Hour (By Bodyweight)"
+description: "Jump rope burns 600–900 calories per hour depending on pace and bodyweight. See the exact per-hour and per-minute numbers, plus why most estimates are too high."
 pubDate: 2026-11-09
-tags: ["calories", "weight loss", "conditioning"]
+updatedDate: 2026-11-09
+author: "collin-stewart"
+heroImage: "/images/blog/jump-rope-calories-burned-per-hour-how-many-calories.webp"
+heroImageAlt: "Woman holding a jump rope in her right hand with a boxing ring behind her"
+tags: ["calories", "cardio", "jump rope"]
+schemaType: "Article"
+faq:
+  - q: "How many calories does 30 minutes of jump rope burn?"
+    a: "For a 70 kg (154 lb) person, about 325 calories at a moderate pace (~100 skips per minute) and about 450 calories at a vigorous pace (~120–140 skips per minute). Real sessions with rest intervals usually land between 250 and 400."
+  - q: "Does a weighted jump rope burn more calories?"
+    a: "Slightly, but usually not enough to matter. A heavier rope raises the muscular demand, but it also forces a slower cadence and earlier fatigue, so total session burn is often similar to a speed rope."
+  - q: "How many calories does 100 skips burn?"
+    a: "Roughly 10–12 calories for a 70 kg person at a moderate pace, since 100 skips takes about one minute. At a fast pace it's closer to 15."
+  - q: "Is jump rope better than running for burning calories?"
+    a: "Per minute, yes — jumping rope is roughly 8.8–12.3 METs versus 7–11 for jogging. Per session, running usually wins because most people can sustain it far longer. Jump rope is more efficient; running is easier to do for an hour."
+  - q: "How long do you need to jump rope to lose 1 kg?"
+    a: "About 7,700 calories equals 1 kg of fat. At 300 calories per session, that's roughly 26 sessions — which is why diet, not session length, drives most fat loss."
 draft: false
 ---
 
-**Quick answer:** Jump rope burns roughly **10–16 calories per minute** depending on your body weight and pace. That's **600–960 calories per hour** for a 150 lb person, and **720–1,150 calories per hour** for a 180 lb person. Double-unders push it higher; slow, steady jumping is on the lower end.
+**Short answer:** At a moderate pace (~100 skips per minute), jump rope burns about **10–13 calories per minute — roughly 600–800 calories per hour for a 70 kg (154 lb) person.** At a vigorous pace (~120–140 skips per minute), it rises to about **15 calories per minute, or 900+ per hour.** Most people can't sustain that pace for a full hour, so real session totals are lower.
 
-## The Formula
+Here are the actual numbers, the formula behind them, and why the "1,000 calories per hour" claims you've seen are misleading.
 
-Jump rope's metabolic cost is measured in **METs** (Metabolic Equivalent of Task). One MET is roughly the calories you burn at rest.
+## Calories Burned Per Hour by Bodyweight
 
-- Slow jump rope (100–120 jumps/min): **~8.8 METs**
-- Moderate jump rope (120–140 jumps/min): **~11.8 METs**
-- Fast jump rope (140–160 jumps/min): **~12.3 METs**
-- Double-unders: **~15+ METs**
+These figures use MET values from the Compendium of Physical Activities: **8.8 METs** for moderate rope skipping and **12.3 METs** for vigorous skipping.
 
-Calories per minute = (METs × 3.5 × body weight in kg) / 200
+| Bodyweight     | Moderate (~100 skips/min) | Vigorous (~120–140 skips/min) |
+| -------------- | ------------------------- | ----------------------------- |
+| 60 kg / 132 lb | ~555 cal/hr               | ~775 cal/hr                   |
+| 70 kg / 154 lb | ~645 cal/hr               | ~905 cal/hr                   |
+| 80 kg / 176 lb | ~740 cal/hr               | ~1,035 cal/hr                 |
+| 90 kg / 198 lb | ~830 cal/hr               | ~1,165 cal/hr                 |
 
-So for a 150 lb (68 kg) person at moderate pace:
-(11.8 × 3.5 × 68) / 200 = **14 calories per minute**
+**Per-minute equivalents for a 70 kg person:** ~10.8 cal/min moderate, ~15.1 cal/min vigorous.
 
-## The Chart
+Your bodyweight matters more than most people expect — a 90 kg jumper burns roughly 50% more per hour than a 60 kg jumper doing the same workout, because moving more mass costs more energy.
 
-| Body Weight    | Slow (100 jpm) | Moderate (120 jpm) | Fast (140+ jpm) | Double-Unders |
-| -------------- | -------------- | ------------------ | --------------- | ------------- |
-| 120 lb (54 kg) | 8.5 cal/min    | 11.3 cal/min       | 11.8 cal/min    | 14+ cal/min   |
-| 150 lb (68 kg) | 10.6 cal/min   | 14.0 cal/min       | 14.7 cal/min    | 17+ cal/min   |
-| 180 lb (82 kg) | 12.7 cal/min   | 16.8 cal/min       | 17.7 cal/min    | 21+ cal/min   |
-| 200 lb (91 kg) | 14.1 cal/min   | 18.7 cal/min       | 19.6 cal/min    | 23+ cal/min   |
+## The Formula (So You Can Check the Math)
 
-**Per hour:**
+Calorie estimates are derived from MET values, not measured directly for every individual. The standard equation:
 
-| Body Weight | Slow    | Moderate  | Fast      |
-| ----------- | ------- | --------- | --------- |
-| 120 lb      | 510 cal | 680 cal   | 710 cal   |
-| 150 lb      | 640 cal | 840 cal   | 880 cal   |
-| 180 lb      | 760 cal | 1,010 cal | 1,060 cal |
-| 200 lb      | 850 cal | 1,120 cal | 1,180 cal |
+**kcal per minute = MET × 3.5 × bodyweight (kg) ÷ 200**
 
-## How Many Jumps to Burn X Calories?
+For a 70 kg person at moderate pace:
+8.8 × 3.5 × 70 ÷ 200 = **10.8 calories per minute**
 
-| Goal           | Jumps (150 lb athlete) |
-| -------------- | ---------------------- |
-| 100 calories   | ~700–800 jumps         |
-| 200 calories   | ~1,400–1,600 jumps     |
-| 500 calories   | ~3,500–4,000 jumps     |
-| 1,000 calories | ~7,000–8,000 jumps     |
+Multiply by 60 for the hourly figure. This is an estimate, not a measurement — individual variation in efficiency, technique, and muscle mass can shift it by 10–15% in either direction.
 
-## How Jump Rope Compares to Other Cardio
+## What Changes the Number
 
-For a 150 lb person, one hour of:
+- **Pace.** This is the biggest lever. Cadence drives the MET value more than anything else — going from 80 to 130 skips per minute can move you from moderate to vigorous territory.
+- **Bodyweight.** Directly proportional, as shown above.
+- **Rest intervals.** See the next section — this is where most estimates fall apart.
+- **Rope type.** Modest effect. Details below.
+- **Technique.** A low, efficient bounce wastes less energy than a high hop. Ironically, jumping higher burns slightly more calories — and is also the fastest route to shin splints.
 
-| Activity                 | Calories |
-| ------------------------ | -------- |
-| **Jump rope (moderate)** | **840**  |
-| Running (6 mph)          | 680      |
-| Cycling (moderate)       | 550      |
-| Walking (brisk)          | 320      |
-| Swimming (moderate)      | 590      |
+## Why "1,000 Calories Per Hour" Is Usually Wrong
 
-Jump rope burns roughly **20–25% more calories per hour than running** at moderate paces. That's why boxers and CrossFit athletes use it as a conditioning staple.
+The math isn't wrong — a 90 kg person at a genuinely vigorous pace can approach 1,100 cal/hr. The problem is **sustaining it**.
 
-## The Two Big Caveats
+An hour of continuous skipping requires 6,000–8,000 jumps. Beginners typically manage 30–90 seconds before tripping or needing rest. Once you account for rest intervals, the _average_ MET value across a real session drops to roughly 6–8 — which means:
 
-### 1. These are averages, not promises
+| Session (70 kg) | Moderate, with rest | Vigorous, with rest |
+| --------------- | ------------------- | ------------------- |
+| 15 minutes      | ~130 cal            | ~180 cal            |
+| 30 minutes      | ~275 cal            | ~375 cal            |
+| 45 minutes      | ~420 cal            | ~565 cal            |
 
-Calorie burn varies by:
+Notice these are meaningfully lower than the continuous-pace table. That's not a flaw in the numbers — it's what actually happens when a human being jumps rope. If you want higher session totals, the answer is longer intervals and shorter rests, not a heavier rope.
 
-- **Muscle mass** (more muscle = more burn)
-- **Fitness level** (fitter = lower burn for the same work)
-- **Efficiency** (trained jumpers are more economical)
-- **Rest intervals** (breaks kill the average fast)
+## Does Rope Type Matter?
 
-### 2. Intervals don't match the chart
+Less than the marketing suggests.
 
-A true HIIT session — 30 seconds on, 30 seconds off — doesn't burn the same as 60 minutes of continuous jumping. You'll likely burn 60–70% of the chart number in a HIIT session of the same total time.
+- **Speed rope** — highest cadence, so the highest sustained MET value. Best choice if your goal is calorie burn.
+- **Weighted rope** — feels dramatically harder, but the extra load forces a slower rhythm and earlier fatigue. Net session burn is usually similar or slightly lower.
+- **Beaded rope** — similar to a speed rope for calorie purposes, more forgiving for beginners learning technique.
 
-## What About "How Many Calories Does 1000 Jump Ropes Burn?"
+The rope changes _how_ the work feels far more than _how much_ energy it costs.
 
-For most people, **1000 jumps = 130–200 calories.** That's the equivalent of a 15-minute brisk walk.
+## How to Burn More Without Adding Time
 
-Jump rope earns its reputation for calorie burn because it's _dense_ — you can burn 300 calories in 20 minutes. But it doesn't magically burn more than the physics says.
+1. **Shorten rests, not intervals.** Cutting rest from 60 to 30 seconds raises average intensity more than adding five minutes to the session.
+2. **Raise cadence, not jump height.** Faster wrists, lower hops — more skips per minute, less impact.
+3. **Use interval structures.** 30 seconds on / 15 seconds off holds a higher average MET than unbroken sets you have to stop anyway.
+4. **Add a second modality.** Pair rope intervals with bodyweight work — see our [burpee and jump rope workout](/blog/burpee-and-jump-rope-workout-the-ultimate-workout/) for a format that keeps heart rate elevated through the whole session.
 
-## The Practical Takeaway
+## Where Jump Rope Fits in a Week
 
-If your goal is weight loss:
+Two to three rope sessions per week is enough to see conditioning gains without beating up your calves and shins. If fat loss is the goal, rope is a tool inside a calorie deficit — not a substitute for one.
 
-1. **Jump rope 3–5 times per week** for 20–30 minutes.
-2. **Track roughly** — don't obsess over the chart.
-3. **Eat at a slight deficit** — exercise alone rarely produces significant weight loss without dietary change.
-4. **Use intervals** — they burn similar totals but produce better conditioning adaptations.
-
-## Ready to Start?
-
-Our [speed rope](/shop) is built for the fast-paced work that produces the highest calorie burn. New to jumping? Start with the [beginner's guide](/blog/jump-rope-coordination-exercises-how-to-improve-coordination/).
+For the cardio comparison that matters most, see [jump rope vs running](/blog/jump-rope-equivalent-to-running-which-is-better-cardio/). And if you want to use rope for low-intensity aerobic work instead of intervals, our [zone 2 jump rope workout](/blog/jump-rope-zone-2-cardio-workout/) covers the pacing problem that trips most people up.
 
 ## Frequently Asked Questions
 
 **How many calories does 30 minutes of jump rope burn?**
-For a 150 lb person at moderate pace: roughly 420 calories. For a 180 lb person: roughly 500 calories.
+For a 70 kg (154 lb) person, about 325 calories at a moderate pace (~100 skips per minute) and about 450 calories at a vigorous pace (~120–140 skips per minute). Real sessions with rest intervals usually land between 250 and 400.
 
-**How many calories does 10 minutes of jump rope burn?**
-For a 150 lb person: roughly 140 calories. For a 180 lb person: roughly 170 calories.
+**Does a weighted jump rope burn more calories?**
+Slightly, but usually not enough to matter. A heavier rope raises the muscular demand, but it also forces a slower cadence and earlier fatigue, so total session burn is often similar to a speed rope.
 
-**Is jump rope better than running for weight loss?**
-Per minute, yes — jump rope burns about 20–25% more. But running is more sustainable for longer durations for many people. Both work.
+**How many calories does 100 skips burn?**
+Roughly 10–12 calories for a 70 kg person at a moderate pace, since 100 skips takes about one minute. At a fast pace it's closer to 15.
 
-**How many calories does 100 jump ropes burn?**
-Roughly 13–20 calories depending on weight and pace.
+**Is jump rope better than running for burning calories?**
+Per minute, yes — jumping rope is roughly 8.8–12.3 METs versus 7–11 for jogging. Per session, running usually wins because most people can sustain it far longer. Jump rope is more efficient; running is easier to do for an hour.
 
-**How many calories does 500 jump ropes burn?**
-Roughly 65–100 calories for most people. About the equivalent of a 10-minute brisk walk.
-
-**How many calories does 1 hour of jump rope burn?**
-For a 150 lb person at moderate pace: roughly 840 calories. For a 180 lb person: roughly 1,010 calories.
-
-**Do you burn more calories jumping rope with a weighted vest?**
-Yes, roughly 10–15% more. But the joint stress increases too — not recommended for beginners.
-
-**Can you lose weight jumping rope 10 minutes a day?**
-Consistency matters more than duration. 10 minutes daily is a solid start, but combine it with dietary changes for meaningful weight loss.
+**How long do you need to jump rope to lose 1 kg?**
+About 7,700 calories equals 1 kg of fat. At 300 calories per session, that's roughly 26 sessions — which is why diet, not session length, drives most fat loss.

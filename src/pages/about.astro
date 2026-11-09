@@ -1,39 +1,81 @@
 ---
+import { getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const title = "About Red Surge Fitness";
+const site = Astro.site ?? new URL("https://redsurgefitness.com");
+
+const author = await getEntry("authors", "collin-stewart");
+if (!author) {
+  throw new Error(
+    'about.astro: no author entry found at "authors/collin-stewart.md"',
+  );
+}
+
+const title = "About Red Surge Fitness & Founder Collin Stewart";
 const description =
-  "Red Surge Fitness builds premium speed and weighted jump ropes for athletes who train seriously. Learn about our mission, our gear philosophy, and the team behind the ropes.";
+  "Premium speed and weighted jump ropes, founded by Collin Stewart — D1 basketball at Monmouth, four years pro — for athletes who train seriously.";
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const organizationId = `${site.origin}/#organization`;
+const authorUrl = new URL(`/authors/${author.id}/`, site).href;
+const personId = `${authorUrl}#person`;
+const canonicalURL = new URL(Astro.url.pathname, site);
 
-// Organization schema with AboutPage context
-const aboutSchema = {
+const graph = {
   "@context": "https://schema.org",
-  "@type": "AboutPage",
-  name: title,
-  description: description,
-  url: canonicalURL.href,
-  mainEntity: {
-    "@type": "Organization",
-    name: "Red Surge Fitness",
-    url: "https://redsurgefitness.com",
-    description:
-      "Premium jump ropes and training insights for athletes who want to move faster and condition harder.",
-    foundingDate: "2026",
-    knowsAbout: [
-      "Jump rope training",
-      "Double-unders",
-      "Speed rope technique",
-      "Weighted rope conditioning",
-      "Athletic conditioning",
-    ],
-  },
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": organizationId,
+      name: "Red Surge Fitness",
+      url: site.origin,
+      logo: {
+        "@type": "ImageObject",
+        url: new URL("/logo.png", site).href,
+      },
+      description:
+        "Premium jump ropes and training guides for athletes who condition seriously.",
+      foundingDate: "2026",
+      founder: { "@id": personId },
+      sameAs: [
+        "https://www.instagram.com/cstewruns",
+        "https://www.tiktok.com/@cstewruns",
+      ],
+    },
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: author.data.name,
+      jobTitle: author.data.role,
+      description: author.data.bio,
+      image: new URL(author.data.avatar, site).href,
+      url: authorUrl,
+      alumniOf: author.data.alumniOf.map((name) => ({
+        "@type": "CollegeOrUniversity",
+        name,
+      })),
+      knowsAbout: author.data.knowsAbout,
+      sameAs: author.data.sameAs,
+    },
+    {
+      "@type": "AboutPage",
+      "@id": `${canonicalURL.href}#about`,
+      name: title,
+      description,
+      url: canonicalURL.href,
+      mainEntity: { "@id": organizationId },
+      about: [{ "@id": organizationId }, { "@id": personId }],
+    },
+  ],
 };
 ---
 
-<BaseLayout title={title} description={description}>
-  <script type="application/ld+json" set:html={JSON.stringify(aboutSchema)} />
+<BaseLayout
+  title={title}
+  description={description}
+  image={author.data.avatar}
+  imageAlt={`Portrait of ${author.data.name}, founder of Red Surge Fitness`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(graph)} />
 
   <!-- Hero -->
   <section
@@ -52,60 +94,16 @@ const aboutSchema = {
     </p>
     <h1
       id="about-heading"
-      class="text-5xl md:text-7xl font-black tracking-tighter mb-8 leading-[0.95] max-w-4xl"
+      class="text-5xl md:text-7xl font-black tracking-tighter mb-8 leading-[0.95] max-w-4xl uppercase"
     >
-      BUILT BY ATHLETES.<br />
-      <span class="text-red-500">FOR ATHLETES.</span>
+      Built by athletes.<br />
+      <span class="text-red-500">For athletes.</span>
     </h1>
     <p class="text-gray-400 text-lg md:text-xl max-w-2xl leading-relaxed">
       Red Surge Fitness exists for one reason: to make jump rope training gear
       that gets out of your way. No gimmicks, no hype cycles — just equipment
       that performs and guidance that actually helps you improve.
     </p>
-  </section>
-
-  <!-- Mission -->
-  <section
-    class="py-20 border-t border-gray-800"
-    aria-labelledby="mission-heading"
-  >
-    <div class="grid md:grid-cols-3 gap-12">
-      <div class="md:col-span-1">
-        <p
-          class="text-xs uppercase tracking-[0.3em] text-red-500 mb-3 font-semibold"
-        >
-          Mission
-        </p>
-        <h2
-          id="mission-heading"
-          class="text-3xl md:text-4xl font-bold tracking-tight leading-tight"
-        >
-          Training gear should never be the limiting factor
-        </h2>
-      </div>
-      <div
-        class="md:col-span-2 space-y-6 text-gray-400 text-lg leading-relaxed"
-      >
-        <p>
-          Jump rope is one of the most efficient conditioning tools in
-          existence. It builds aerobic capacity, coordination, and explosive
-          power with almost no equipment. But most jump ropes on the market are
-          built for casual use — plastic cables, weak bearings, handles that
-          slip.
-        </p>
-        <p>
-          We started Red Surge Fitness because we got tired of replacing ropes
-          every few months. The gear we build is designed for the way serious
-          athletes actually train: long sets, high volume, and double-unders
-          that need to land every single time.
-        </p>
-        <p>
-          Every product we make is tested in real training sessions before it
-          ships. If it doesn't survive a four-week block of daily use, it
-          doesn't go in the catalog.
-        </p>
-      </div>
-    </div>
   </section>
 
   <!-- Timeline / story -->
@@ -172,6 +170,109 @@ const aboutSchema = {
           had when we started. More products in development.
         </p>
       </article>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section
+    class="py-20 border-t border-gray-800"
+    aria-labelledby="mission-heading"
+  >
+    <div class="grid md:grid-cols-3 gap-12">
+      <div class="md:col-span-1">
+        <p
+          class="text-xs uppercase tracking-[0.3em] text-red-500 mb-3 font-semibold"
+        >
+          Mission
+        </p>
+        <h2
+          id="mission-heading"
+          class="text-3xl md:text-4xl font-bold tracking-tight leading-tight"
+        >
+          Training gear should never be the limiting factor
+        </h2>
+      </div>
+      <div
+        class="md:col-span-2 space-y-6 text-gray-400 text-lg leading-relaxed"
+      >
+        <p>
+          Jump rope is one of the most efficient conditioning tools in
+          existence. It builds aerobic capacity, coordination, and explosive
+          power with almost no equipment. But most jump ropes on the market are
+          built for casual use — plastic cables, weak bearings, handles that
+          slip.
+        </p>
+        <p>
+          Red Surge exists because that's the wrong tradeoff. The gear we build
+          is designed for the way serious athletes actually train: long sets,
+          high volume, and double-unders that need to land every single time.
+        </p>
+        <p>
+          Every product is tested in real training sessions before it ships. If
+          it doesn't survive a four-week block of daily use, it doesn't go in
+          the catalog.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder -->
+  <section
+    class="py-20 border-t border-gray-800"
+    aria-labelledby="founder-heading"
+  >
+    <div class="grid md:grid-cols-3 gap-12 items-start">
+      <div class="md:col-span-1">
+        <img
+          src={author.data.avatar}
+          alt={`Portrait of ${author.data.name}`}
+          width="200"
+          height="200"
+          class="w-40 h-40 md:w-48 md:h-48 rounded-full object-cover border-2 border-gray-800 mb-6"
+        />
+        <p
+          class="text-xs uppercase tracking-[0.3em] text-red-500 mb-3 font-semibold"
+        >
+          Founder
+        </p>
+        <h2
+          id="founder-heading"
+          class="text-3xl md:text-4xl font-bold tracking-tight leading-tight mb-3"
+        >
+          Collin Stewart
+        </h2>
+        <p class="text-gray-400">{author.data.role}</p>
+      </div>
+
+      <div class="md:col-span-2">
+        <p class="text-gray-300 text-lg leading-relaxed mb-6">
+          Red Surge was founded by Collin Stewart, a former Division I
+          basketball player at Monmouth University who went on to play four
+          years professionally. He started the company after burning through one
+          too many speed ropes during off-season conditioning — the cables
+          frayed, the bearings seized, and the handles slipped long before the
+          training block was over.
+        </p>
+        <p class="text-gray-400 text-lg leading-relaxed mb-8">
+          The conditioning work that built his playing career is the same work
+          the guides on this site are built around. Every claim on Red Surge is
+          checked against primary research and tested personally before it goes
+          live — including the popular ones that turn out to be wrong.
+        </p>
+
+        <h3 class="text-xl font-bold mb-4">Credentials</h3>
+        <ul class="list-disc list-inside text-gray-300 space-y-1 mb-8">
+          {author.data.credentials.map((credential) => <li>{credential}</li>)}
+        </ul>
+
+        <a
+          href={authorUrl}
+          class="inline-flex items-center gap-2 text-red-400 hover:text-red-300 font-semibold transition"
+        >
+          Read Collin's full author profile
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -283,9 +384,9 @@ const aboutSchema = {
     </div>
     <h2
       id="cta-heading"
-      class="text-4xl md:text-5xl font-black tracking-tighter mb-6"
+      class="text-4xl md:text-5xl font-black tracking-tighter mb-6 uppercase"
     >
-      SEE THE <span class="text-red-500">GEAR</span>
+      See the <span class="text-red-500">gear</span>
     </h2>
     <p class="text-gray-400 text-lg max-w-xl mx-auto mb-10">
       Speed ropes, weighted ropes, and the guides that go with them.
