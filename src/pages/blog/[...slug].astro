@@ -1,6 +1,7 @@
 ---
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
@@ -109,7 +110,7 @@ const articleSchema = {
           </div>
           <div>
             <p class="text-sm font-semibold text-white">{post.data.author}</p>
-            <p class="text-xs text-gray-500">Founder, Red Surge Fitness</p>
+            <p class="text-xs text-gray-300">Founder, Red Surge Fitness</p>
           </div>
         </div>
         <span aria-hidden="true" class="text-gray-700 hidden sm:inline">·</span>
@@ -128,11 +129,11 @@ const articleSchema = {
     {
       post.data.heroImage && (
         <figure class="mb-12">
-          <img
+          <Image
             src={post.data.heroImage}
             alt={post.data.title}
-            width="1600"
-            height="840"
+            width={1600}
+            height={840}
             loading="eager"
             fetchpriority="high"
             decoding="async"
