@@ -172,11 +172,22 @@ const siteSchema = {
 
     <footer class="border-t border-gray-800 mt-20">
       <div
-        class="max-w-7xl mx-auto px-6 lg:px-8 py-8 text-center text-gray-400 text-sm"
+        class="max-w-7xl mx-auto px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-gray-400 text-sm"
       >
         <p>
           &copy; {new Date().getFullYear()} Red Surge Fitness. All rights reserved.
         </p>
+        <div class="flex gap-6">
+          <a href="/privacy" class="hover:text-white transition"
+            >Privacy Policy</a
+          >
+          <a href="/terms" class="hover:text-white transition"
+            >Terms of Service</a
+          >
+          <a href="/shipping-returns" class="hover:text-white transition"
+            >Shipping & Returns</a
+          >
+        </div>
       </div>
     </footer>
     <!-- src/layouts/BaseLayout.astro (bottom of file, before </body>) -->

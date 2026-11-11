@@ -1,0 +1,113 @@
+---
+// src/pages/privacy.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Privacy Policy | Red Surge Fitness"
+  description="Learn how Red Surge Fitness collects, uses, and protects your personal information."
+>
+  <main class="max-w-3xl mx-auto py-16">
+    <h1 class="text-4xl md:text-5xl font-black tracking-tighter mb-4 uppercase">
+      Privacy <span class="text-red-500">Policy</span>
+    </h1>
+    <p class="text-gray-400 mb-12">
+      Last updated: {
+        new Date().toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        })
+      }
+    </p>
+
+    <div
+      class="prose prose-invert prose-lg prose-headings:font-bold prose-headings:tracking-tight prose-a:text-red-400 hover:prose-a:text-red-300 prose-p:text-gray-300"
+    >
+      <p>
+        Red Surge Fitness ("we," "our," or "us") respects your privacy and is
+        committed to protecting your personal data. This Privacy Policy explains
+        how we collect, use, and safeguard your information when you visit our
+        website, redsurgefitness.com.
+      </p>
+
+      <h2>1. Information We Collect</h2>
+      <p>
+        When you visit or make a purchase from our site, we collect certain
+        information about your device and your interaction with the site. We
+        also collect information necessary to process your orders.
+      </p>
+      <ul>
+        <li>
+          <strong>Device Information:</strong> We may collect information about your
+          web browser, IP address, time zone, and some of the cookies that are installed
+          on your device.
+        </li>
+        <li>
+          <strong>Order Information:</strong> When you make a purchase or attempt
+          to make a purchase, we collect your name, billing address, shipping address,
+          payment information (processed securely via Stripe), email address, and
+          phone number.
+        </li>
+      </ul>
+
+      <h2>2. How We Use Your Information</h2>
+      <p>
+        We use the information we collect to fulfill any orders placed through
+        the site (including processing your payment information, arranging for
+        shipping, and providing you with invoices and/or order confirmations).
+        Additionally, we use this information to:
+      </p>
+      <ul>
+        <li>Communicate with you;</li>
+        <li>Screen our orders for potential risk or fraud;</li>
+        <li>
+          Provide you with information or advertising relating to our products
+          or services.
+        </li>
+      </ul>
+
+      <h2>3. Payment Processing</h2>
+      <p>
+        All payments are processed securely through Stripe. We do not store or
+        directly process your credit card information on our servers. Stripe's
+        use of your personal information is governed by their <a
+          href="https://stripe.com/privacy"
+          target="_blank"
+          rel="noopener noreferrer">Privacy Policy</a
+        >.
+      </p>
+
+      <h2>4. Data Retention</h2>
+      <p>
+        When you place an order through the Site, we will maintain your Order
+        Information for our records unless and until you ask us to delete this
+        information.
+      </p>
+
+      <h2>5. Your Rights</h2>
+      <p>
+        If you are a European resident, you have the right to access personal
+        information we hold about you and to ask that your personal information
+        be corrected, updated, or deleted. If you would like to exercise this
+        right, please contact us at <a href="mailto:support@redsurgefitness.com"
+          >support@redsurgefitness.com</a
+        >.
+      </p>
+
+      <h2>6. Contact Us</h2>
+      <p>
+        For more information about our privacy practices, if you have questions,
+        or if you would like to make a complaint, please contact us by e-mail at <a
+          href="mailto:support@redsurgefitness.com"
+          >support@redsurgefitness.com</a
+        > or by mail using the details provided below:
+      </p>
+      <p>
+        Red Surge Fitness<br />
+        [Insert Business Address Here]<br />
+        [Insert City, State, Zip Code]
+      </p>
+    </div>
+  </main>
+</BaseLayout>
