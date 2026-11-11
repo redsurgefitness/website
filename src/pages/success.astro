@@ -1,0 +1,49 @@
+---
+// src/pages/success.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Order Successful | Red Surge Fitness"
+  description="Thank you for your order."
+  noindex={true}
+>
+  <main
+    class="flex flex-col items-center justify-center min-h-[60vh] text-center py-20"
+  >
+    <div
+      class="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center mb-8"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-10 h-10 text-green-500"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"
+        ></path>
+      </svg>
+    </div>
+    <h1 class="text-4xl md:text-5xl font-black tracking-tighter mb-4">
+      Payment <span class="text-green-500">Successful.</span>
+    </h1>
+    <p class="text-gray-400 text-lg max-w-md mb-10">
+      Thank you for your order! We are preparing your new jump rope for
+      shipment. You will receive a confirmation email shortly.
+    </p>
+    <a
+      href="/shop"
+      class="bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-lg font-semibold transition"
+    >
+      Return to Shop
+    </a>
+  </main>
+
+  <script>
+    // Clear the cart upon successful payment
+    localStorage.removeItem("cart");
+    window.dispatchEvent(new Event("cart-updated"));
+  </script>
+</BaseLayout>

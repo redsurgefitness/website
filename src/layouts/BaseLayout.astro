@@ -1,4 +1,5 @@
 ---
+//src/layouts/BaseLayout.astro
 import "../styles/global.css";
 import { SEO } from "astro-seo-kit";
 
@@ -123,11 +124,41 @@ const siteSchema = {
         >
           RED SURGE
         </a>
-        <div class="flex gap-6 text-sm font-medium">
+        <div class="flex items-center gap-6 text-sm font-medium">
           <a href="/" class="hover:text-red-400 transition">Home</a>
           <a href="/about" class="hover:text-red-400 transition">About</a>
           <a href="/blog" class="hover:text-red-400 transition">Blog</a>
           <a href="/shop" class="hover:text-red-400 transition">Shop</a>
+
+          <!-- Cart Link -->
+          <a
+            href="/cart"
+            class="relative hover:text-red-400 transition flex items-center gap-1"
+            aria-label="View Cart"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="8" cy="21" r="1"></circle>
+              <circle cx="19" cy="21" r="1"></circle>
+              <path
+                d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+              ></path>
+            </svg>
+            <span
+              id="nav-cart-count"
+              class="absolute -top-2 -right-3 bg-red-600 text-white text-xs font-bold px-1.5 py-0.5 rounded-full hidden"
+              >0</span
+            >
+          </a>
         </div>
       </nav>
     </header>
@@ -148,5 +179,81 @@ const siteSchema = {
         </p>
       </div>
     </footer>
+    <!-- src/layouts/BaseLayout.astro (bottom of file, before </body>) -->
+    <script>
+      interface CartItem {
+        variantId: number;
+        quantity: number;
+      }
+
+      // 1. Core Cart Logic
+      (window as any).getCart = function (): CartItem[] {
+        return JSON.parse(localStorage.getItem("cart") || "[]");
+      };
+
+      (window as any).saveCart = function (cart: CartItem[]) {
+        localStorage.setItem("cart", JSON.stringify(cart));
+        window.dispatchEvent(new Event("cart-updated"));
+      };
+
+      (window as any).addToCart = function (
+        variantId: number,
+        quantity: number = 1,
+      ) {
+        const cart = (window as any).getCart();
+        const existingItem = cart.find(
+          (item: CartItem) => item.variantId === variantId,
+        );
+        if (existingItem) {
+          existingItem.quantity += quantity;
+        } else {
+          cart.push({ variantId, quantity });
+        }
+        (window as any).saveCart(cart);
+      };
+
+      (window as any).goToCheckout = async function () {
+        const cart = (window as any).getCart();
+        if (cart.length === 0) return alert("Your cart is empty.");
+
+        const response = await fetch("/api/checkout", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ cart }),
+        });
+
+        // 1. Define the expected shape of the response
+        interface CheckoutResponse {
+          url?: string;
+          error?: string;
+        }
+
+        // 2. Cast the response to the interface
+        const data = (await response.json()) as CheckoutResponse;
+
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          alert("Checkout failed: " + (data.error || "Unknown error"));
+        }
+      };
+
+      // 2. Update the Navbar Cart Count
+      function updateNavCartCount() {
+        const cart = (window as any).getCart();
+        const count = cart.reduce(
+          (sum: number, item: CartItem) => sum + item.quantity,
+          0,
+        );
+        const badge = document.getElementById("nav-cart-count");
+        if (badge) {
+          badge.textContent = count.toString();
+          badge.classList.toggle("hidden", count === 0);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", updateNavCartCount);
+      window.addEventListener("cart-updated", updateNavCartCount);
+    </script>
   </body>
 </html>

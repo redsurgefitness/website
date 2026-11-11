@@ -1,8 +1,10 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"compatibility_date": "2026-11-03",
-	"compatibility_flags": ["global_fetch_strictly_public"],
-	"name": "redsurgefitness",
+	"compatibility_flags": [
+		"global_fetch_strictly_public"
+	],
+	"name": "website",
 	"main": "@astrojs/cloudflare/entrypoints/server",
 	"assets": {
 		"directory": "./dist",
@@ -10,5 +12,13 @@
 	},
 	"observability": {
 		"enabled": true
-	}
+	},
+	"d1_databases": [
+		{
+			"binding": "redsurge_shop",
+			"database_name": "redsurge-shop",
+			"database_id": "83eb7423-8d85-4b71-b996-4ad7bfdb14cb",
+			"remote": true
+		}
+	]
 }

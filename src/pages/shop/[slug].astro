@@ -1,0 +1,258 @@
+---
+// src/pages/shop/[slug].astro
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { env } from "cloudflare:workers";
+
+interface Product {
+  id: number;
+  name: string;
+  slug: string;
+  description: string;
+  image_url: string | null;
+  long_description: string | null;
+  specs: string | null;
+  faqs: string | null;
+}
+
+interface Variant {
+  id: number;
+  product_id: number;
+  name: string;
+  price_cents: number;
+  stripe_price_id: string;
+}
+
+interface FAQItem {
+  q: string;
+  a: string;
+}
+
+export async function getStaticPaths() {
+  const { results: products } = await env.redsurge_shop
+    .prepare("SELECT slug FROM products")
+    .all<{ slug: string }>();
+  return products.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const site = Astro.site ?? new URL("https://redsurgefitness.com");
+const canonicalURL = new URL(Astro.url.pathname, site);
+
+const { results: productResults } = await env.redsurge_shop
+  .prepare("SELECT * FROM products WHERE slug = ?")
+  .bind(slug)
+  .all<Product>();
+
+const product = productResults[0];
+if (!product) return Astro.redirect("/404");
+
+const { results: variants } = await env.redsurge_shop
+  .prepare("SELECT * FROM product_variants WHERE product_id = ?")
+  .bind(product.id)
+  .all<Variant>();
+
+// Parse JSON columns safely
+const specs: Record<string, string> = product.specs ? JSON.parse(product.specs) : {};
+const faqs: FAQItem[] = product.faqs ? JSON.parse(product.faqs) : [];
+
+// --- GEO & SEO STRUCTURED DATA (JSON-LD) ---
+const productSchema = {
+  "@type": "Product",
+  "@id": `${canonicalURL.href}#product`,
+  name: product.name,
+  description: product.description,
+  image: product.image_url ? new URL(product.image_url, site).href : undefined,
+  brand: { "@type": "Brand", name: "Red Surge Fitness" },
+  offers: variants.map((v) => ({
+    "@type": "Offer",
+    url: canonicalURL.href,
+    priceCurrency: "USD",
+    price: (v.price_cents / 100).toFixed(2),
+    availability: "https://schema.org/InStock",
+    itemCondition: "https://schema.org/NewCondition",
+  })),
+  additionalProperty: Object.entries(specs).map(([name, value]) => ({
+    "@type": "PropertyValue",
+    name,
+    value
+  }))
+};
+
+const faqSchema = faqs.length > 0 ? {
+  "@type": "FAQPage",
+  "@id": `${canonicalURL.href}#faq`,
+  mainEntity: faqs.map(faq => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a
+    }
+  }))
+} : null;
+
+const schemaGraph = {
+  "@context": "https://schema.org",
+  "@graph": [productSchema, faqSchema].filter(Boolean)
+};
+---
+
+<BaseLayout
+  title={`${product.name} | Red Surge Fitness`}
+  description={product.description}
+  image={product.image_url || undefined}
+>
+  <!-- Inject the combined schema graph -->
+  <script type="application/ld+json" set:html={JSON.stringify(schemaGraph)} />
+
+  <nav aria-label="Breadcrumb" class="mb-8">
+    <ol class="flex items-center gap-2 text-sm text-gray-400">
+      <li><a href="/" class="hover:text-red-400 transition">Home</a></li>
+      <li aria-hidden="true" class="text-gray-600">/</li>
+      <li><a href="/shop" class="hover:text-red-400 transition">Shop</a></li>
+      <li aria-hidden="true" class="text-gray-600">/</li>
+      <li class="text-gray-300 truncate" aria-current="page">{product.name}</li>
+    </ol>
+  </nav>
+
+  <!-- Top Section: Image + Buy Box -->
+  <article class="grid md:grid-cols-2 gap-12 py-8">
+    <!-- Product Image -->
+    <div class="relative aspect-square bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden md:sticky md:top-24">
+      {product.image_url ? (
+        <img src={product.image_url} alt={product.name} width="800" height="800" class="w-full h-full object-cover" />
+      ) : (
+        <div class="flex items-center justify-center h-full text-gray-600">Image Coming Soon</div>
+      )}
+    </div>
+
+    <!-- Product Details -->
+    <div class="flex flex-col">
+      <h1 class="text-4xl md:text-5xl font-black tracking-tighter mb-4">{product.name}</h1>
+      <p class="text-xl text-gray-400 leading-relaxed mb-8">{product.description}</p>
+
+      <!-- Variant Selector -->
+      <div class="mb-8">
+        <h3 class="text-sm uppercase tracking-widest text-gray-500 font-semibold mb-3">Options</h3>
+        <div class="flex flex-wrap gap-3">
+          {variants.map((variant) => (
+            <button
+              data-variant-id={variant.id}
+              class="variant-btn border border-gray-700 hover:border-red-500 px-6 py-3 rounded-lg font-semibold transition"
+            >
+              {variant.name} - ${(variant.price_cents / 100).toFixed(2)}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4">
+        <button id="add-to-cart-btn" class="bg-gray-800 hover:bg-gray-700 text-white px-8 py-4 rounded-lg font-semibold transition w-full sm:w-auto">
+          Add to Cart
+        </button>
+        <button id="buy-now-btn" class="bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-lg font-semibold transition w-full sm:w-auto">
+          Buy Now
+        </button>
+      </div>
+    </div>
+  </article>
+
+  <!-- Bottom Section: Deep Dive, Specs, FAQs -->
+  <div class="mt-16 pt-12 border-t border-gray-800 grid lg:grid-cols-3 gap-12">
+    
+    <!-- Left Column: Long Description & FAQ (Spans 2 cols) -->
+    <div class="lg:col-span-2 space-y-12">
+      
+      <!-- Deep Dive Content -->
+      {product.long_description && (
+        <section>
+          <h2 class="text-3xl font-bold tracking-tight mb-6">Why Athletes Choose the {product.name}</h2>
+          <!-- The prose class handles typography styling automatically if you have @tailwindcss/typography installed -->
+          <div class="prose prose-invert prose-lg prose-p:text-gray-400 prose-p:leading-relaxed max-w-none" set:html={product.long_description} />
+        </section>
+      )}
+
+      <!-- FAQ Section -->
+      {faqs.length > 0 && (
+        <section>
+          <h2 class="text-3xl font-bold tracking-tight mb-6">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            {faqs.map((faq) => (
+              <details class="group bg-gray-900 border border-gray-800 rounded-xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                <summary class="flex items-center justify-between cursor-pointer p-6 font-semibold text-lg hover:text-red-400 transition">
+                  {faq.q}
+                  <span class="transition group-open:rotate-180">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                  </span>
+                </summary>
+                <div class="px-6 pb-6 text-gray-400 leading-relaxed border-t border-gray-800 pt-4">
+                  {faq.a}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+
+    <!-- Right Column: Specifications Table -->
+    <div class="lg:col-span-1">
+      {Object.keys(specs).length > 0 && (
+        <section class="sticky top-24">
+          <h2 class="text-2xl font-bold tracking-tight mb-6">Specifications</h2>
+          <div class="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden">
+            <table class="w-full text-sm text-left">
+              <tbody>
+                {Object.entries(specs).map(([key, value], index) => (
+                  <tr class={index % 2 === 0 ? 'bg-gray-900' : 'bg-gray-950/50'}>
+                    <th scope="row" class="px-6 py-4 font-semibold text-gray-300 w-1/2">{key}</th>
+                    <td class="px-6 py-4 text-gray-400">{value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
+    </div>
+
+  </div>
+</BaseLayout>
+
+<script>
+  // ... (Keep the exact same script block from your previous file here) ...
+  document.addEventListener("DOMContentLoaded", () => {
+    let selectedVariantId: number | null = null;
+    const variantBtns = document.querySelectorAll<HTMLElement>(".variant-btn");
+
+    if (variantBtns.length > 0) {
+      selectedVariantId = Number(variantBtns[0].dataset.variantId);
+      variantBtns[0].classList.add("border-red-500", "bg-red-600/10");
+    }
+
+    variantBtns.forEach((btn: HTMLElement) => {
+      btn.addEventListener("click", () => {
+        variantBtns.forEach((b) => b.classList.remove("border-red-500", "bg-red-600/10"));
+        btn.classList.add("border-red-500", "bg-red-600/10");
+        selectedVariantId = Number(btn.dataset.variantId);
+      });
+    });
+
+    document.getElementById("add-to-cart-btn")?.addEventListener("click", () => {
+      if (selectedVariantId) {
+        // @ts-ignore
+        window.addToCart(selectedVariantId);
+      }
+    });
+
+    document.getElementById("buy-now-btn")?.addEventListener("click", () => {
+      if (selectedVariantId) {
+        // @ts-ignore
+        window.addToCart(selectedVariantId);
+        // @ts-ignore
+        window.goToCheckout();
+      }
+    });
+  });
+</script>

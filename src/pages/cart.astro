@@ -1,0 +1,182 @@
+---
+// src/pages/cart.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Your Cart | Red Surge Fitness"
+  description="Review your order."
+  noindex={true}
+>
+  <main class="max-w-3xl mx-auto py-16">
+    <h1
+      class="text-4xl md:text-5xl font-black tracking-tighter mb-10 uppercase"
+    >
+      Your <span class="text-red-500">Cart</span>
+    </h1>
+
+    <div id="cart-container" class="mb-12 space-y-4">
+      <p class="text-gray-400 animate-pulse">Loading cart...</p>
+    </div>
+
+    <div class="border-t border-gray-800 pt-8 flex flex-col items-end">
+      <div class="flex justify-between w-full md:w-1/2 text-xl font-bold mb-6">
+        <span>Total:</span>
+        <span id="cart-total">$0.00</span>
+      </div>
+      <button
+        id="checkout-btn"
+        class="bg-red-600 hover:bg-red-500 text-white px-10 py-4 rounded-lg font-bold text-lg transition w-full md:w-1/2 opacity-50 cursor-not-allowed"
+        disabled
+      >
+        Proceed to Checkout
+      </button>
+    </div>
+  </main>
+
+  <script>
+    interface CartItem {
+      variantId: number;
+      quantity: number;
+    }
+
+    interface ProductDetails {
+      variant_id: number;
+      variant_name: string;
+      price_cents: number;
+      product_name: string;
+      image_url: string | null;
+    }
+
+    async function renderCart() {
+      const container = document.getElementById("cart-container");
+      const checkoutBtn = document.getElementById(
+        "checkout-btn",
+      ) as HTMLButtonElement;
+      const totalEl = document.getElementById("cart-total");
+
+      const cart: CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
+
+      if (cart.length === 0) {
+        if (container)
+          container.innerHTML =
+            '<p class="text-gray-400 text-lg">Your cart is empty.</p>';
+        if (checkoutBtn) {
+          checkoutBtn.disabled = true;
+          checkoutBtn.classList.add("opacity-50", "cursor-not-allowed");
+        }
+        if (totalEl) totalEl.textContent = "$0.00";
+        return;
+      }
+
+      // Fetch details from API
+      const res = await fetch("/api/cart", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ variantIds: cart.map((c) => c.variantId) }),
+      });
+      const products: ProductDetails[] = await res.json();
+
+      let totalCents = 0;
+
+      if (container) {
+        container.innerHTML = cart
+          .map((item) => {
+            const product = products.find(
+              (p) => p.variant_id === item.variantId,
+            );
+            if (!product) return "";
+            totalCents += product.price_cents * item.quantity;
+
+            return `
+          <div class="flex items-center gap-6 bg-gray-900 border border-gray-800 p-4 rounded-2xl">
+            <div class="w-24 h-24 bg-gray-950 rounded-lg overflow-hidden shrink-0">
+              ${product.image_url ? `<img src="${product.image_url}" class="w-full h-full object-cover">` : ""}
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-lg">${product.product_name}</h3>
+              <p class="text-gray-400 text-sm">${product.variant_name}</p>
+              <p class="text-red-400 font-semibold mt-1">$${(product.price_cents / 100).toFixed(2)}</p>
+            </div>
+            <div class="flex flex-col items-end gap-2">
+              <div class="flex items-center gap-3 bg-gray-950 px-3 py-1 rounded-lg border border-gray-800">
+                <button onclick="updateQty(${item.variantId}, -1)" class="text-gray-400 hover:text-white">-</button>
+                <span class="w-4 text-center">${item.quantity}</span>
+                <button onclick="updateQty(${item.variantId}, 1)" class="text-gray-400 hover:text-white">+</button>
+              </div>
+              <button onclick="removeItem(${item.variantId})" class="text-sm text-red-500 hover:underline">Remove</button>
+            </div>
+          </div>
+        `;
+          })
+          .join("");
+      }
+
+      if (totalEl) totalEl.textContent = `$${(totalCents / 100).toFixed(2)}`;
+      if (checkoutBtn) {
+        checkoutBtn.disabled = false;
+        checkoutBtn.classList.remove("opacity-50", "cursor-not-allowed");
+      }
+    }
+
+    // Add types to the global window functions
+    (window as any).updateQty = function (variantId: number, change: number) {
+      let cart: CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
+      const item = cart.find((i) => i.variantId === variantId);
+      if (item) {
+        item.quantity += change;
+        if (item.quantity <= 0)
+          cart = cart.filter((i) => i.variantId !== variantId);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+        window.dispatchEvent(new Event("cart-updated"));
+      }
+    };
+
+    (window as any).removeItem = function (variantId: number) {
+      let cart: CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
+      cart = cart.filter((i) => i.variantId !== variantId);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+      window.dispatchEvent(new Event("cart-updated"));
+    };
+
+    document
+      .getElementById("checkout-btn")
+      ?.addEventListener("click", async () => {
+        const cart: CartItem[] = JSON.parse(
+          localStorage.getItem("cart") || "[]",
+        );
+        const btn = document.getElementById(
+          "checkout-btn",
+        ) as HTMLButtonElement;
+        btn.textContent = "Processing...";
+        btn.disabled = true;
+
+        const response = await fetch("/api/checkout", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ cart }),
+        });
+
+        // 1. Define the expected shape of the response
+        interface CheckoutResponse {
+          url?: string;
+          error?: string;
+        }
+
+        // 2. Cast the response
+        const data = (await response.json()) as CheckoutResponse;
+
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          alert("Checkout failed: " + (data.error || "Unknown error"));
+          btn.textContent = "Proceed to Checkout";
+          btn.disabled = false;
+        }
+      });
+
+    document.addEventListener("DOMContentLoaded", renderCart);
+  </script>
+</BaseLayout>
