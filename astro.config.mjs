@@ -10,7 +10,7 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: "https://redsurgefitness.com",
-  output: 'server',
+  output: "server",
   adapter: cloudflare({
     imageService: "compile",
   }),
@@ -18,6 +18,4 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-
-  integrations: [sitemap()],
 });
