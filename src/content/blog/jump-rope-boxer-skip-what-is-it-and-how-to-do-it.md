@@ -2,7 +2,7 @@
 title: "Boxer Skip: What It Is and How to Do It"
 description: "The boxer skip isn't a trick — it's a weight-shift pattern that halves the landings each calf absorbs. Here's the 5-step progression and the mistakes to avoid."
 pubDate: 2026-11-10
-updatedDate: 2026-11-10
+updatedDate: 2026-11-13
 author: "collin-stewart"
 heroImage: "/images/blog/jump-rope-boxer-skip-what-is-it-and-how-to-do-it.webp"
 heroImageAlt: "Athlete performing a boxer skip with a jump rope in a boxing ring, weight shifted onto one leg"
@@ -18,7 +18,7 @@ faq:
   - q: "How long does it take to learn the boxer skip?"
     a: "Most people can get the footwork pattern without a rope in one or two sessions using the 5-3-2-1 countdown drill. Adding the rope and making it continuous usually takes one to three weeks of short daily practice. The skill is not hard — the mistake is trying to learn it at full speed on day one."
   - q: "Should I use a speed rope or a beaded rope for the boxer skip?"
-    a: "A beaded or PVC rope is easier to learn on because the extra weight tells you where the rope is in the turn and a miss stings less. A thin speed cable is fine once the pattern is automatic, but it gives less feedback while you're learning."
+    a: "A beaded or PVC rope is easier to learn on because the extra weight tells you where the rope is in the turn and a miss stings less. A weighted rope gives similar feedback. A thin speed cable is fine once the pattern is automatic, but it gives less feedback while you're learning."
   - q: "Why do I keep tripping on the boxer skip?"
     a: "The three usual causes are jumping too high, popping the tapping foot up like you're stepping over a hurdle, and turning the rope with your shoulders instead of your wrists. Fix the tapping foot first — it should skim the floor, not lift."
 draft: false
@@ -113,9 +113,11 @@ Neither is "better" in the abstract. If your goal is a five-minute brutal interv
 
 A **beaded or PVC rope** is easier to learn on than a thin speed cable. The extra weight tells you where the rope is in the turn, and a miss stings less. That feedback matters while you're learning a new footwork pattern.
 
+If you don't have a beaded rope, a **[weighted rope](/shop/weighted-jump-rope/)** gives similar feedback — the heavier cable tells you where the turn is, and a miss lands softer than a thin cable whipping your ankle. It's the better learning tool of the two options we build.
+
 Size it by standing on the middle of the rope and pulling the handles up. For the boxer skip, **sternum-to-armpit height** is the right range — slightly shorter than the beginner sizing for a basic bounce, because the pattern is more compact.
 
-Once the pattern is automatic, a speed rope is fine. But learn on the heavier rope. The feedback is the point.
+Once the pattern is automatic, a **[speed rope](/shop/speed-jump-rope/)** is fine. The thin cable and faster bearings let you hold a higher cadence without the rope becoming the limiting factor. But learn on the heavier rope. The feedback is the point.
 
 ## Where It Fits in a Session
 
@@ -130,6 +132,8 @@ A simple progression:
 The three-minute round structure is not arbitrary — it's the men's professional boxing standard. Women's professional rounds are usually two minutes. Use the clock that matches the work you're training for.
 
 For the calorie side of the equation, the boxer skip sits in the same intensity band as a moderate two-foot bounce — roughly 100 skips per minute, about 8.8 METs. Our [calorie breakdown](/blog/jump-rope-calories-burned-per-hour-how-many-calories/) has the full per-bodyweight tables if you want to estimate session burn.
+
+Once the boxer skip is automatic, the [criss cross](/blog/jump-rope-criss-cross-benefits-why-is-a-criss-cross-beneficial/) is the natural next skill — it's an arm-path variation that adds variety without changing the footwork pattern you just learned. And if you want a session that pairs boxer skip intervals with core work, the [jump rope ab circuit](/blog/jump-rope-ab-circuit-get-ripped-with-a-jump-rope/) uses it as the recovery interval between harder rope movements.
 
 ## One Note From Experience
 
@@ -154,7 +158,7 @@ It reduces the impact load per leg, which is one of the main drivers of shin spl
 Most people can get the footwork pattern without a rope in one or two sessions using the 5-3-2-1 countdown drill. Adding the rope and making it continuous usually takes one to three weeks of short daily practice. The skill is not hard — the mistake is trying to learn it at full speed on day one.
 
 **Should I use a speed rope or a beaded rope for the boxer skip?**
-A beaded or PVC rope is easier to learn on because the extra weight tells you where the rope is in the turn and a miss stings less. A thin speed cable is fine once the pattern is automatic, but it gives less feedback while you're learning.
+A beaded or PVC rope is easier to learn on because the extra weight tells you where the rope is in the turn and a miss stings less. A weighted rope gives similar feedback. A thin speed cable is fine once the pattern is automatic, but it gives less feedback while you're learning.
 
 **Why do I keep tripping on the boxer skip?**
 The three usual causes are jumping too high, popping the tapping foot up like you're stepping over a hurdle, and turning the rope with your shoulders instead of your wrists. Fix the tapping foot first — it should skim the floor, not lift.
