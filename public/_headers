@@ -1,10 +1,11 @@
 # public/_headers
 
-# Force all HTML pages to be served with the correct MIME type
+# Force all HTML pages to be served as HTML
 /*.html
   Content-Type: text/html; charset=utf-8
+  ! Content-Disposition
 
-# If your pages are served without a .html extension (e.g., /blog/my-post)
-# you may need a more targeted rule. For example:
+# Force dynamic/blog pages to be served as HTML
 /blog/*
   Content-Type: text/html; charset=utf-8
+  ! Content-Disposition
