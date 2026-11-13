@@ -1,18 +1,20 @@
 ---
-//src/pages/blog/[...slug].astro
-import { getCollection, render, type CollectionEntry } from "astro:content";
+// src/pages/blog/[...slug].astro
+
+// 1. FORCE THE BROWSER TO RENDER AS HTML (Fixes the mobile download issue)
+Astro.response.headers.set("Content-Type", "text/html; charset=utf-8");
+
+import { getEntry, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getAuthor } from "../../lib/authors";
 
-export async function getStaticPaths() {
-  const posts = await getCollection("blog", ({ data }) => !data.draft);
-  return posts.map((post: CollectionEntry<"blog">) => ({
-    params: { slug: post.id },
-    props: { post },
-  }));
-}
+// 2. SSR DATA FETCHING (Replaces getStaticPaths)
+const { slug } = Astro.params;
+if (!slug) return Astro.redirect("/404");
 
-const { post } = Astro.props;
+const post = await getEntry("blog", slug);
+if (!post) return Astro.redirect("/404");
+
 const { Content } = await render(post);
 
 const site = Astro.site ?? new URL("https://redsurgefitness.com");
