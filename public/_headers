@@ -1,0 +1,10 @@
+# public/_headers
+
+# Force all HTML pages to be served with the correct MIME type
+/*.html
+  Content-Type: text/html; charset=utf-8
+
+# If your pages are served without a .html extension (e.g., /blog/my-post)
+# you may need a more targeted rule. For example:
+/blog/*
+  Content-Type: text/html; charset=utf-8
