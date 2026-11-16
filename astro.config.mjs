@@ -21,6 +21,16 @@ export default defineConfig({
     partytown({
       config: {
         forward: ["dataLayer.push", "gtag"],
+        resolveUrl: (url) => {
+          if (url.hostname === "www.google-analytics.com") {
+            const proxyUrl = new URL(
+              "/proxytown/ga",
+              "https://redsurgefitness.com",
+            );
+            return proxyUrl;
+          }
+          return url;
+        },
       },
     }),
   ],
