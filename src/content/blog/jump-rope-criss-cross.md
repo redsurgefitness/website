@@ -99,7 +99,7 @@ Then practice entering and exiting without stopping. **Switch which arm is on to
 | **Kicking feet back**      | Heels flick backward and catch the rope            | Shorten the kick; practice running in place without the rope |
 | **Rope too long**          | Sluggish loop, catches constantly                  | Size it properly — a loose rope catches feet far more often  |
 
-The bottom three are not criss cross problems. They're basic-bounce problems that the criss cross exposes. If you can't do fifty clean basic bounces with quiet landings, fix that first — the [shin splints guide](/blog/avoid-shin-splints-jump-rope-how-to-avoid-shin-splints/) covers what's going wrong and how to correct it. The criss cross will still be there in two weeks.
+The bottom three are not criss cross problems. They're basic-bounce problems that the criss cross exposes. If you can't do fifty clean basic bounces with quiet landings, fix that first — the [shin splints guide](/blog/jump-rope-shin-splints/) covers what's going wrong and how to correct it. The criss cross will still be there in two weeks.
 
 ## What Muscles It Actually Works
 
@@ -140,7 +140,7 @@ At the same cadence, **a criss cross costs roughly the same energy as a basic bo
 
 So if you're doing 120 skips per minute, you're at roughly 120 skips per minute of work whether your arms are crossed or not. The criss cross is harder to _perform_, not harder to _metabolize_.
 
-For the calorie math, our [per-bodyweight breakdown](/blog/jump-rope-calories-burned-per-hour-how-many-calories/) has the full tables. The short version: cadence and bodyweight drive the number, skill selection barely moves it.
+For the calorie math, our [per-bodyweight breakdown](/blog/jump-rope-calories-per-hour/) has the full tables. The short version: cadence and bodyweight drive the number, skill selection barely moves it.
 
 This matters practically. If your session plan says "criss crosses for conditioning," you're not getting more conditioning — you're getting less, because you'll trip more and spend more time resetting. **Use the criss cross to build skill, and use clean continuous bouncing or intervals to build conditioning.** Trying to do both with one movement means doing neither well.
 
@@ -156,7 +156,7 @@ This matters practically. If your session plan says "criss crosses for condition
 | **Best for**                       | Short hard intervals | Volume, joint preservation | Skill, variety, shoulder endurance |
 | **Prerequisite**                   | None                 | Basic bounce               | 50+ clean basic bounces            |
 
-If you're choosing what to learn next and you haven't got the [boxer skip](/blog/jump-rope-boxer-skip-what-is-it-and-how-to-do-it/) yet, do that first. It changes how much volume your legs can tolerate, which matters more for your training than an arm trick does. The criss cross changes how your upper body works. Different problems, different value.
+If you're choosing what to learn next and you haven't got the [boxer skip](/blog/boxer-skip/) yet, do that first. It changes how much volume your legs can tolerate, which matters more for your training than an arm trick does. The criss cross changes how your upper body works. Different problems, different value.
 
 ## A Note From Experience
 
@@ -193,7 +193,7 @@ Treat it as a skill block, not a workout block.
 
 **When to stop:** when you start catching the rope on more than one in five attempts. That's fatigue, not failure. Reset, do some basic bounces, and come back tomorrow. Grinding through bad reps teaches your hands the wrong timing.
 
-If you want to add the criss cross to a conditioning session once the pattern is reliable, the [jump rope ab circuit](/blog/jump-rope-ab-circuit-get-ripped-with-a-jump-rope/) uses it as the final rope interval — the rotation it adds is a genuine core demand that the basic bounce doesn't have.
+If you want to add the criss cross to a conditioning session once the pattern is reliable, the [jump rope ab circuit](/blog/jump-rope-ab-circuit/) uses it as the final rope interval — the rotation it adds is a genuine core demand that the basic bounce doesn't have.
 
 ## Three Fixes for "The Rope Keeps Catching My Feet"
 
@@ -205,7 +205,7 @@ Almost every version of this problem comes down to one of three things.
 
 **3. Rope length.** A rope that's too long loops slowly and catches feet far more often than a properly sized one. If you sized your rope for a slow beginner bounce, it may be too long for criss crosses, which need a tighter loop. Standing on the middle of the rope, the handles should reach somewhere between your sternum and your armpit.
 
-If all three are correct and you're still catching, the issue is usually that your basic bounce isn't clean yet. Go back to quiet, low, consistent bouncing for two weeks — the [shin splints guide](/blog/avoid-shin-splints-jump-rope-how-to-avoid-shin-splints/) covers the underlying landing issues if the problem is impact-related. The criss cross gets easier when the foundation underneath it is solid.
+If all three are correct and you're still catching, the issue is usually that your basic bounce isn't clean yet. Go back to quiet, low, consistent bouncing for two weeks — the [shin splints guide](/blog/jump-rope-shin-splints/) covers the underlying landing issues if the problem is impact-related. The criss cross gets easier when the foundation underneath it is solid.
 
 ## Frequently Asked Questions
 

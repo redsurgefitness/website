@@ -42,7 +42,7 @@ It also looks different. A fitness-class bounce is square, ankles locked, height
 
 Four reasons, in order of how much they matter.
 
-**1. Calf endurance without the pounding.** Alternating feet splits the landing load between legs at the same rope speed. That's the difference between holding fifteen or twenty minutes and shredding your shins in five. If you've read our breakdown of [why jump rope causes shin splints](/blog/avoid-shin-splints-jump-rope-how-to-avoid-shin-splints/), this is the technique-side fix — less impact per leg, per session.
+**1. Calf endurance without the pounding.** Alternating feet splits the landing load between legs at the same rope speed. That's the difference between holding fifteen or twenty minutes and shredding your shins in five. If you've read our breakdown of [why jump rope causes shin splints](/blog/jump-rope-shin-splints/), this is the technique-side fix — less impact per leg, per session.
 
 **2. It rehearses weight transfer.** Each pass moves your weight between the lead and rear side. That's the same mechanic behind stepping into a jab or loading the rear foot for a hook. You're not practicing punches — you're bouncing fairly square, covering no ground — but you are rehearsing the weight shift those punches depend on.
 
@@ -131,9 +131,9 @@ A simple progression:
 
 The three-minute round structure is not arbitrary — it's the men's professional boxing standard. Women's professional rounds are usually two minutes. Use the clock that matches the work you're training for.
 
-For the calorie side of the equation, the boxer skip sits in the same intensity band as a moderate two-foot bounce — roughly 100 skips per minute, about 8.8 METs. Our [calorie breakdown](/blog/jump-rope-calories-burned-per-hour-how-many-calories/) has the full per-bodyweight tables if you want to estimate session burn.
+For the calorie side of the equation, the boxer skip sits in the same intensity band as a moderate two-foot bounce — roughly 100 skips per minute, about 8.8 METs. Our [calorie breakdown](/blog/jump-rope-calories-per-hour/) has the full per-bodyweight tables if you want to estimate session burn.
 
-Once the boxer skip is automatic, the [criss cross](/blog/jump-rope-criss-cross-benefits-why-is-a-criss-cross-beneficial/) is the natural next skill — it's an arm-path variation that adds variety without changing the footwork pattern you just learned. And if you want a session that pairs boxer skip intervals with core work, the [jump rope ab circuit](/blog/jump-rope-ab-circuit-get-ripped-with-a-jump-rope/) uses it as the recovery interval between harder rope movements.
+Once the boxer skip is automatic, the [criss cross](/blog/jump-rope-criss-cross/) is the natural next skill — it's an arm-path variation that adds variety without changing the footwork pattern you just learned. And if you want a session that pairs boxer skip intervals with core work, the [jump rope ab circuit](/blog/jump-rope-ab-circuit/) uses it as the recovery interval between harder rope movements.
 
 ## One Note From Experience
 
@@ -141,7 +141,7 @@ I spent four years playing professionally, and the footwork pattern in the boxer
 
 That's the reason the pattern transfers so well — it isn't a jump rope trick, it's a general athletic skill that happens to be trainable with a rope. If you've played any sport that requires you to stay light on your feet, you already have the mechanic. You just need to add the rope.
 
-If you're coming from running and want to know how rope work compares, our [jump rope vs running breakdown](/blog/jump-rope-equivalent-to-running-which-is-better-cardio/) covers the intensity and joint-load differences. The short version: the boxer skip is the version of rope work that sits closest to an easy-to-moderate run, which makes it the right choice for building a base.
+If you're coming from running and want to know how rope work compares, our [jump rope vs running breakdown](/blog/jump-rope-vs-running/) covers the intensity and joint-load differences. The short version: the boxer skip is the version of rope work that sits closest to an easy-to-moderate run, which makes it the right choice for building a base.
 
 ## Frequently Asked Questions
 

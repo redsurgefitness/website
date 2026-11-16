@@ -142,9 +142,9 @@ The worm is the one to fix first. It's the most common error and the one most li
 If you're tripping constantly during the rope intervals, the problem is almost never fitness — it's footwork under fatigue. Two fixes:
 
 - **Drop the jump height.** You need 1–2 inches. Tired people over-jump, which makes timing harder and impact worse.
-- **Switch to the boxer skip.** It roughly halves the landings each calf absorbs, which matters enormously in a session where you're already doing burpee jump landings. Our [boxer skip breakdown](/blog/jump-rope-boxer-skip-what-is-it-and-how-to-do-it/) covers the footwork pattern.
+- **Switch to the boxer skip.** It roughly halves the landings each calf absorbs, which matters enormously in a session where you're already doing burpee jump landings. Our [boxer skip breakdown](/blog/boxer-skip/) covers the footwork pattern.
 
-If your shins are the thing quitting before your lungs are, read our [shin splints guide](/blog/avoid-shin-splints-jump-rope-how-to-avoid-shin-splints/) before your next session. The short version: reduce volume by 40%, drop jump height, and get off concrete.
+If your shins are the thing quitting before your lungs are, read our [shin splints guide](/blog/jump-rope-shin-splints/) before your next session. The short version: reduce volume by 40%, drop jump height, and get off concrete.
 
 ## The Calorie Math
 
@@ -158,7 +158,7 @@ Burpees are roughly 8 METs; moderate jump rope is 8.8 and vigorous is 11.8[refer
 | 20 minutes      | ~270–310 cal   |
 | 30 minutes      | ~400–460 cal   |
 
-Those are estimates, not measurements — rest intervals and pacing move them by 15–20% either direction. For the full methodology and per-bodyweight tables, see our [jump rope calorie breakdown](/blog/jump-rope-calories-burned-per-hour-how-many-calories/).
+Those are estimates, not measurements — rest intervals and pacing move them by 15–20% either direction. For the full methodology and per-bodyweight tables, see our [jump rope calorie breakdown](/blog/jump-rope-calories-per-hour/).
 
 And the honest caveat that applies to every conditioning session: **calories burned during the workout are not the main driver of fat loss.** Total weekly energy balance is. A 300-calorie session four times a week is meaningful inside a deficit and irrelevant outside one.
 
@@ -176,9 +176,9 @@ This is a high-impact session. Between the burpee jump landings and the rope lan
 
 Don't stack this session directly before or after a long run. If you're already running or lifting, place it on a day when your legs are fresh, and treat it as the conditioning component of the week rather than an add-on.
 
-If you want a lower-impact conditioning session that still trains the core hard, the [jump rope ab circuit](/blog/jump-rope-ab-circuit-get-ripped-with-a-jump-rope/) uses the same interval logic with core work instead of burpees. If you want to know how the cardio demand compares to running, our [jump rope vs running breakdown](/blog/jump-rope-equivalent-to-running-which-is-better-cardio/) has the intensity data.
+If you want a lower-impact conditioning session that still trains the core hard, the [jump rope ab circuit](/blog/jump-rope-ab-circuit/) uses the same interval logic with core work instead of burpees. If you want to know how the cardio demand compares to running, our [jump rope vs running breakdown](/blog/jump-rope-vs-running/) has the intensity data.
 
-And if you're still learning the rope itself, spend two weeks on the [boxer skip](/blog/jump-rope-boxer-skip-what-is-it-and-how-to-do-it/) before adding burpees. Learning a new skill inside a fatigued circuit is the slowest possible way to learn it.
+And if you're still learning the rope itself, spend two weeks on the [boxer skip](/blog/boxer-skip/) before adding burpees. Learning a new skill inside a fatigued circuit is the slowest possible way to learn it.
 
 ## One Note From Experience
 

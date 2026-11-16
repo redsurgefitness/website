@@ -58,7 +58,7 @@ Multiply by 60 for the hourly figure. This is an estimate, not a measurement —
 - **Bodyweight.** Directly proportional, as shown above.
 - **Rest intervals.** See the next section — this is where most estimates fall apart.
 - **Rope type.** Modest effect. Details below.
-- **Technique.** A low, efficient bounce wastes less energy than a high hop. Ironically, jumping higher burns slightly more calories — and is also the fastest route to [shin splints](/blog/avoid-shin-splints-jump-rope-how-to-avoid-shin-splints/).
+- **Technique.** A low, efficient bounce wastes less energy than a high hop. Ironically, jumping higher burns slightly more calories — and is also the fastest route to [shin splints](/blog/jump-rope-shin-splints/).
 
 ## Why "1,000 Calories Per Hour" Is Usually Wrong
 
@@ -89,13 +89,13 @@ The rope changes _how_ the work feels far more than _how much_ energy it costs.
 1. **Shorten rests, not intervals.** Cutting rest from 60 to 30 seconds raises average intensity more than adding five minutes to the session.
 2. **Raise cadence, not jump height.** Faster wrists, lower hops — more skips per minute, less impact.
 3. **Use interval structures.** 30 seconds on / 15 seconds off holds a higher average MET than unbroken sets you have to stop anyway.
-4. **Add a second modality.** Pair rope intervals with core or bodyweight work — our [jump rope ab circuit](/blog/jump-rope-ab-circuit-get-ripped-with-a-jump-rope/) uses a 40/20 interval structure that keeps heart rate elevated through the whole session.
+4. **Add a second modality.** Pair rope intervals with core or bodyweight work — our [jump rope ab circuit](/blog/jump-rope-ab-circuit/) uses a 40/20 interval structure that keeps heart rate elevated through the whole session.
 
 ## Where Jump Rope Fits in a Week
 
 Two to three rope sessions per week is enough to see conditioning gains without beating up your calves and shins. If fat loss is the goal, rope is a tool inside a calorie deficit — not a substitute for one.
 
-If you want to accumulate more minutes at moderate intensity without your shins quitting, the [boxer skip](/blog/jump-rope-boxer-skip-what-is-it-and-how-to-do-it/) roughly halves the impact per leg. For the cardio comparison that matters most, see [jump rope vs running](/blog/jump-rope-equivalent-to-running-which-is-better-cardio/). And if your shins are already flaring, our [shin splints guide](/blog/avoid-shin-splints-jump-rope-how-to-avoid-shin-splints/) covers the fix in detail.
+If you want to accumulate more minutes at moderate intensity without your shins quitting, the [boxer skip](/blog/boxer-skip/) roughly halves the impact per leg. For the cardio comparison that matters most, see [jump rope vs running](/blog/jump-rope-vs-running/). And if your shins are already flaring, our [shin splints guide](/blog/jump-rope-shin-splints/) covers the fix in detail.
 
 ## Frequently Asked Questions
 

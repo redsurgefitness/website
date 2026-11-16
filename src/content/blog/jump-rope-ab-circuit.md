@@ -36,7 +36,7 @@ That distinction matters because it determines what a rope workout can and can't
 
 The three ways rope work actually engages the core:
 
-**1. Anti-rotation.** The rope turn creates a small twisting impulse against your torso. The obliques and deep core resist it. On a basic bounce this is small; during a [criss cross](/blog/jump-rope-criss-cross-benefits-why-is-a-criss-cross-beneficial/) or high-knee interval it's substantially more.
+**1. Anti-rotation.** The rope turn creates a small twisting impulse against your torso. The obliques and deep core resist it. On a basic bounce this is small; during a [criss cross](/blog/jump-rope-criss-cross/) or high-knee interval it's substantially more.
 
 **2. Spinal stabilization.** Every landing sends force upward through the spine. If the core wasn't holding the trunk rigid, you'd fold forward. Thousands of landings = thousands of small isometric bracing reps.
 
@@ -54,7 +54,7 @@ This is not a "well actually" disclaimer. It's the mechanism. If the ab circuit 
 
 The honest framing: **a jump rope ab circuit is a calorie-burn tool plus a core-strength tool.** Both are useful. Neither is the thing that reveals your abs. That's a job for your kitchen and your weekly energy balance.
 
-Our [calorie breakdown](/blog/jump-rope-calories-burned-per-hour-how-many-calories/) covers the math for how much rope work actually burns. Short version: a 70 kg person at moderate pace burns roughly 275–375 calories in a 30-minute session with rests. Meaningful over months. Not a shortcut.
+Our [calorie breakdown](/blog/jump-rope-calories-per-hour/) covers the math for how much rope work actually burns. Short version: a 70 kg person at moderate pace burns roughly 275–375 calories in a 30-minute session with rests. Meaningful over months. Not a shortcut.
 
 ## The Circuit: 10 Minutes, Three Rounds
 
@@ -73,7 +73,7 @@ The structure is **rope interval → core movement → rest**. Rope keeps heart 
 
 **Cool-down:** 2 min easy walking, 30 sec/side figure-four stretch.
 
-The rope variations are chosen for different core demands. High knees recruits the hip flexors hardest. Criss cross adds the anti-rotation component. The boxer skip is lower-impact — good as a recovery between the harder intervals, and it's what lets you hold the circuit together once fatigue sets in. If you haven't learned the [boxer skip](/blog/jump-rope-boxer-skip-what-is-it-and-how-to-do-it/) yet, use a basic bounce for round 3 — the skill work and the conditioning work shouldn't be the same session.
+The rope variations are chosen for different core demands. High knees recruits the hip flexors hardest. Criss cross adds the anti-rotation component. The boxer skip is lower-impact — good as a recovery between the harder intervals, and it's what lets you hold the circuit together once fatigue sets in. If you haven't learned the [boxer skip](/blog/boxer-skip/) yet, use a basic bounce for round 3 — the skill work and the conditioning work shouldn't be the same session.
 
 If you don't have the criss cross yet — it takes most people two to four weeks to learn — use a basic bounce instead. Don't try to learn a new skill inside a conditioning circuit; the form breaks down when you're tired.
 
@@ -115,11 +115,11 @@ For this circuit specifically, use a speed rope. The intervals are short (40 sec
 
 Two to three sessions per week, on non-consecutive days. The limiting factor is almost always the rope load on your calves and shins, not the abs — so apply the same rule to this as any jump rope programming: **ramp volume by 10% per week, not per session.**
 
-If your shins are flaring, our [shin splints guide](/blog/avoid-shin-splints-jump-rope-how-to-avoid-shin-splints/) covers the fix in detail. Short version: reduce jump height, move off concrete, cut volume by 40%. The ab circuit will still be here in two weeks.
+If your shins are flaring, our [shin splints guide](/blog/jump-rope-shin-splints/) covers the fix in detail. Short version: reduce jump height, move off concrete, cut volume by 40%. The ab circuit will still be here in two weeks.
 
-For a lower-impact version that lets you accumulate more total work, swap the high-knee and criss-cross intervals for [boxer skip](/blog/jump-rope-boxer-skip-what-is-it-and-how-to-do-it/) rounds — the core work stays the same, but the rope load per leg drops roughly in half.
+For a lower-impact version that lets you accumulate more total work, swap the high-knee and criss-cross intervals for [boxer skip](/blog/boxer-skip/) rounds — the core work stays the same, but the rope load per leg drops roughly in half.
 
-If you want to know how the cardio side of this compares to running, our [jump rope vs running breakdown](/blog/jump-rope-equivalent-to-running-which-is-better-cardio/) covers the intensity and joint-load differences. The short version: the ab circuit sits in the moderate-intensity band, which is exactly where you want to be for a session that's also training core strength.
+If you want to know how the cardio side of this compares to running, our [jump rope vs running breakdown](/blog/jump-rope-vs-running/) covers the intensity and joint-load differences. The short version: the ab circuit sits in the moderate-intensity band, which is exactly where you want to be for a session that's also training core strength.
 
 If you're newer to the rope entirely and 40 seconds of continuous bouncing is beyond you right now, do the circuit at 20 seconds on / 40 seconds off for the first two weeks. You'll get more total work at a lower chance of quitting. There's no award for starting at the harder version.
 

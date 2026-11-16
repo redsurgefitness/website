@@ -70,7 +70,7 @@ Jumping higher than necessary is the most common technical error and the easiest
 
 The landing should be on the forefoot or midfoot with slightly bent knees, and it should sound like a **quiet tap, not a thud**. If you can hear yourself landing across the room, you're over-jumping.
 
-A useful mechanical trick: the [boxer skip](/blog/jump-rope-boxer-skip-what-is-it-and-how-to-do-it/), where the feet stay slightly offset so one leg absorbs more force at a time, produces less impact than a symmetric two-foot bounce and is a genuine hedge against shin splints. It's also why boxers can skip for 20 minutes without their shins falling apart.
+A useful mechanical trick: the [boxer skip](/blog/boxer-skip/), where the feet stay slightly offset so one leg absorbs more force at a time, produces less impact than a symmetric two-foot bounce and is a genuine hedge against shin splints. It's also why boxers can skip for 20 minutes without their shins falling apart.
 
 ### 3. Surface
 
@@ -114,7 +114,7 @@ Three cues, in order of impact:
 2. **Land quiet.** Forefoot first, knees soft. The sound is your feedback loop.
 3. **Turn the rope with your wrists, not your arms.** Big arm swings force bigger jumps.
 
-If you're tripping constantly and over-jumping to compensate, the underlying problem is footwork, not shin strength. The [boxer skip breakdown](/blog/jump-rope-boxer-skip-what-is-it-and-how-to-do-it/) addresses that directly — it teaches a lower-impact landing pattern that also happens to be easier on your calves.
+If you're tripping constantly and over-jumping to compensate, the underlying problem is footwork, not shin strength. The [boxer skip breakdown](/blog/boxer-skip/) addresses that directly — it teaches a lower-impact landing pattern that also happens to be easier on your calves.
 
 ### Part 4 — Surface and footwear
 

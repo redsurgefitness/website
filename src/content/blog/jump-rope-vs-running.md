@@ -59,7 +59,7 @@ Metabolic equivalents (METs) let you compare intensity directly. One MET is rest
 
 Read that table carefully, because it settles the argument. **Moderate rope skipping is roughly equivalent to a 5–6 mph jog. Vigorous rope skipping is roughly equivalent to an 8-minute-mile run.** It is not magic, and it is not 3× running. But it also isn't nothing — a hard rope session sits comfortably in the same intensity band as a genuinely hard run.
 
-At 125 skips per minute, a 150 lb adult burns roughly **12 calories per minute** — about the same as running a 10-minute mile. For the full bodyweight and pace tables, see our [jump rope calorie breakdown](/blog/jump-rope-calories-burned-per-hour-how-many-calories/).
+At 125 skips per minute, a 150 lb adult burns roughly **12 calories per minute** — about the same as running a 10-minute mile. For the full bodyweight and pace tables, see our [jump rope calorie breakdown](/blog/jump-rope-calories-per-hour/).
 
 ## Time Equivalence: What It Actually Takes
 
@@ -95,7 +95,7 @@ The common claim is that rope is "lower impact" than running. It's half true, an
 
 **Ankles: running wins.** Research on competitive jump rope athletes found peak ankle moments were 9–20% greater in the speed step than in double unders and running, and peak negative ankle power was **39–114% greater** in double unders and speed step compared to running. Rope work is an ankle-dominant pattern — repeated low-amplitude landings, thousands of them per session.
 
-That's why the injury profile differs. Rope tends to produce calf, Achilles, and shin complaints. Running tends to produce knee, hip, and IT band complaints. Neither is universally safer; they load different structures. If you have a history of [shin splints from jumping rope](/blog/avoid-shin-splints-jump-rope-how-to-avoid-shin-splints/), the fix is volume management and a softer surface, not abandoning the rope.
+That's why the injury profile differs. Rope tends to produce calf, Achilles, and shin complaints. Running tends to produce knee, hip, and IT band complaints. Neither is universally safer; they load different structures. If you have a history of [shin splints from jumping rope](/blog/jump-rope-shin-splints/), the fix is volume management and a softer surface, not abandoning the rope.
 
 On injury rates, the running data is well documented: **17.8 injuries per 1,000 hours in novice runners and 7.7 per 1,000 hours in recreational runners**. Comparable rope data is thinner, but the 1986 trial found higher injury and drop-out in the rope group than the jogging group over six weeks — a useful warning that a new rope program is not automatically gentler than a new running program.
 
@@ -135,9 +135,9 @@ That's enough to build tendon stiffness and foot reactivity without adding meani
 
 If you're using rope as your only cardio, do intervals rather than trying to skip continuously — 30 s on / 15 s off holds a higher average intensity and is far more sustainable than unbroken sets you have to stop anyway.
 
-For the low-intensity end of the spectrum, the [boxer skip](/blog/jump-rope-boxer-skip-what-is-it-and-how-to-do-it/) is the closest thing to a zone 2 session — it's lower-impact than a two-foot bounce and lets you accumulate minutes at a conversational pace. And if you want to combine rope work with core training for a genuinely hard session, the [jump rope ab circuit](/blog/jump-rope-ab-circuit-get-ripped-with-a-jump-rope/) uses the same interval logic with a different strength emphasis.
+For the low-intensity end of the spectrum, the [boxer skip](/blog/boxer-skip/) is the closest thing to a zone 2 session — it's lower-impact than a two-foot bounce and lets you accumulate minutes at a conversational pace. And if you want to combine rope work with core training for a genuinely hard session, the [jump rope ab circuit](/blog/jump-rope-ab-circuit/) uses the same interval logic with a different strength emphasis.
 
-The skill work is what makes all of this possible. If you're tripping constantly, the problem is footwork, not fitness — the [boxer skip breakdown](/blog/jump-rope-boxer-skip-what-is-it-and-how-to-do-it/) is the right place to start.
+The skill work is what makes all of this possible. If you're tripping constantly, the problem is footwork, not fitness — the [boxer skip breakdown](/blog/boxer-skip/) is the right place to start.
 
 ## Frequently Asked Questions
 
